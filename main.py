@@ -44,7 +44,7 @@ def callback():
 # MessageEvent
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if 'おっぱい'event.message.text:
+    if 'おっぱい' in event.message.text:
         content = 'もみもみ'
     else:
         content = '「' + event.message.text +'」はおっぱいじゃないです'
