@@ -56,11 +56,11 @@ def make_carousel_template():
                             label='postback1',
                             text='postback text1',
                             data='action=buy&itemid=1'
-                            ),
+                        ),
                             MessageAction(
                             label='message1',
                             text='message text1'
-                            ),
+                        ),
                             URIAction(
                             label='uri1',
                             uri='http://example.com/1'
