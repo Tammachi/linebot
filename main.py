@@ -92,14 +92,14 @@ def make_carousel_template():
     )
     return message_template
 
-@handler.add(MessageEvent, message=(TextMessage))
+@handler.add(MessageEvent, message=(ImageMessage))
 def handle_message(event):
     if '位置情報' in event.message.text:
         messages = make_carousel_template()
     line_bot_api.reply_message(
         event.reply_token,
         messages
-    )
+        )
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
