@@ -41,6 +41,7 @@ def callback():
 
     return 'OK'
 
+
 # MessageEvent
 def make_carousel_template():
     carousel_template_message = TemplateSendMessage(
@@ -57,10 +58,11 @@ def make_carousel_template():
                 )
             ]
         )
+    )
     return carousel_template_message
 
 @handler.add(MessageEvent, message=(TextMessage))
-def handle_message(event):
+def handle_image_message(event):
     if '位置情報' in event.message.text:
         messages = make_carousel_template()
     line_bot_api.reply_message(
