@@ -42,7 +42,6 @@ def callback():
     return 'OK'
 
 # MessageEvent
-
 def make_carousel_template():
     message_template = TemplateSendMessage(
         message_template = TemplateSendMessage(
@@ -69,6 +68,7 @@ def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         messages
+        )
     )
 
 if __name__ == "__main__":
