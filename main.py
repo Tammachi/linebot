@@ -44,8 +44,51 @@ def callback():
 # MessageEvent
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if 'おっぱい' in event.message.text:
-        content = 'もみもみ'
+    if '位置情報' in event.message.text:
+        {
+    "type": "template",
+    "altText": "this is a carousel template",
+    "template": {
+        "type": "carousel",
+        "actions": [],
+        "columns": [
+            {
+                "thumbnailImageUrl": "SPECIFY_YOUR_IMAGE_URL",
+                "title": "タイトルです",
+                "text": "テキストです",
+                "actions": [
+                    {
+                        "type": "message",
+                        "label": "アクション 1",
+                        "text": "アクション 1"
+                    },
+                    {
+                        "type": "message",
+                        "label": "アクション 2",
+                        "text": "アクション 2"
+                    }
+                ]
+            },
+            {
+                "thumbnailImageUrl": "SPECIFY_YOUR_IMAGE_URL",
+                "title": "タイトルです",
+                "text": "テキストです",
+                "actions": [
+                    {
+                        "type": "message",
+                        "label": "アクション 1",
+                        "text": "アクション 1"
+                    },
+                    {
+                        "type": "message",
+                        "label": "アクション 2",
+                        "text": "アクション 2"
+                    }
+                ]
+            }
+        ]
+    }
+}
     else:
         content = '「' + event.message.text +'」はおっぱいじゃないです'
     line_bot_api.reply_message(
