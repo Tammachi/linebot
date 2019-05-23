@@ -44,48 +44,16 @@ def callback():
 # MessageEvent
 def make_carousel_template():
     carousel_template_message = TemplateSendMessage(
-        alt_text='Carousel template',
-        template=CarouselTemplate(
-            columns=[
-                CarouselColumn(
-                    thumbnail_image_url='https://example.com/item1.jpg',
-                    title='this is menu1',
-                    text='description1',
-                    actions=[
-                        PostbackAction(
-                            label='postback1',
-                            text='postback text1',
-                            data='action=buy&itemid=1'
-                        ),
-                        MessageAction(
-                            label='message1',
-                            text='message text1'
-                        ),
-                        URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url='https://example.com/item2.jpg',
-                    title='this is menu2',
-                    text='description2',
-                    actions=[
-                        PostbackAction(
-                            label='postback2',
-                            text='postback text2',
-                            data='action=buy&itemid=2'
-                        ),
-                        MessageAction(
-                            label='message2',
-                            text='message text2'
-                        ),
-                        URIAction(
-                            label='uri2',
-                            uri='http://example.com/2'
-                        )
-                    ]
+        alt_text="うんちうんち",
+        template=ButtonsTemplate(
+            text="京都府京都市。「清水の舞台」で知られる寺院。北法相宗の本山（一寺一宗）。縁起、年中行事、境内案内",
+            title="清水寺",
+            image_size="cover",
+            thumbnail_image_url="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:Kiyomizu_Temple_-_01.jpg",
+            actions=[
+                URIAction(
+                    uri="https://任意のページURL",
+                    label="URIアクションのLABEL"
                 )
             ]
         )
