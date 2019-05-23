@@ -44,19 +44,37 @@ def callback():
 # MessageEvent
 def make_carousel_template():
     message_template = TemplateSendMessage(
-        alt_text="うんちうんち",
-        template=ButtonsTemplate(
-            text="京都府京都市。「清水の舞台」で知られる寺院。北法相宗の本山（一寺一宗）。縁起、年中行事、境内案内",
-            title="清水寺",
-            image_size="cover",
-            thumbnail_image_url="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:Kiyomizu_Temple_-_01.jpg",
-            actions=[
-                URIAction(
-                    uri="https://任意のページURL",
-                    label="URIアクションのLABEL"
-                )
-            ]
-        )
+        "type": "template",
+    "altText": "this is a image carousel template",
+    "template": {
+        "type": "image_carousel",
+        "columns": [
+            {
+                "imageUrl": "https://example.com/test-cline/b01_img01.jpg",
+                "action": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "https://classmethod.jp/"
+                }
+            },
+            {
+                "imageUrl": "https://example.com/test-cline/b01_img02.jpg",
+                "action": {
+                    "type": "postback",
+                    "label": "Buy",
+                    "data": "action=buy&itemid=111"
+                }
+            },
+            {
+                "imageUrl": "https://example.com/test-cline/b01_img04.jpg",
+                "action": {
+                    "type": "message",
+                    "label": "Yes",
+                    "text": "yes"
+                }
+            }
+        ]
+    }
     )
     return message_template
 
