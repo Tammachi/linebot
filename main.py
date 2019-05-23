@@ -8,7 +8,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    FollowEvent, MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage, TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction
+    FollowEvent, MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage, TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction, URIAction
 )
 import os
 
@@ -42,30 +42,32 @@ def callback():
     return 'OK'
 
 # MessageEvent
+
+def make_button_template():
+    message_template = TemplateSendMessage(
+        alt_text="にゃーん",
+        template=ButtonsTemplate(
+            text="どこに表示されるかな？",
+            title="タイトルですよ",
+            image_size="cover",
+            thumbnail_image_url="https://任意の画像URL.jpg",
+            actions=[
+                URIAction(
+                    uri="https://任意のページURL",
+                    label="URIアクションのLABEL"
+                )
+            ]
+        )
+    )
+    return message_template
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if '位置情報' in event.message.text:
-        $columns = array(
-                        array('thumbnailImageUrl' => '画像のURL',
-                            　'title'   => 'タイトル最大４０文字',
-                            　'text'    => 'タイトルか画像がある場合は最大60文字、どちらもない場合は最大120文字',
-                            　'actions' => array(array('type' => 'message', 'label' => 'ラベルです', 'text' => 'メッセージ'))
-                        ),
-                        array('thumbnailImageUrl' => '画像のURL',
-                            　'title'   => 'タイトル最大４０文字',
-                            　'text'    => 'タイトルか画像がある場合は最大60文字、どちらもない場合は最大120文字',
-                            　'actions' => array(array('type' => 'message', 'label' => 'ラベルです', 'text' => 'メッセージ'))
-                        )
-                    );
-
-        $template = array('type'    => 'carousel',
-                    'columns' => $columns,
-                    );
-
-        $message = array('type'     => 'template',
-                    'altText'  => '代替テキスト',
-                    'template' => $template
-                    );
+    messages = make_button_template()
+    line_bot_api.reply_message(
+        event.reply_token,
+        messages
+    )
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
