@@ -94,7 +94,8 @@ def make_carousel_template():
 
 @handler.add(MessageEvent, message=(TextMessage))
 def handle_image_message(event):
-    messages = make_carousel_template()
+    if '位置情報' in event.message.text:
+        messages = make_carousel_template()
     line_bot_api.reply_message(
         event.reply_token,
         messages
