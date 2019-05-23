@@ -49,7 +49,7 @@ def make_carousel_template():
             text="京都府京都市。「清水の舞台」で知られる寺院。北法相宗の本山（一寺一宗）。縁起、年中行事、境内案内",
             title="清水寺",
             image_size="cover",
-            thumbnail_image_url="https://www.google.com/search?q=%E6%B8%85%E6%B0%B4%E5%AF%BA&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjP7oaS4bDiAhUKPXAKHR6uDQAQ_AUIDygC&biw=681&bih=615#imgrc=nBERCX3Y30QuhM:",
+            thumbnail_image_url="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:Kiyomizu_Temple_-_01.jpg",
             actions=[
                 URIAction(
                     uri="https://任意のページURL",
