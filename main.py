@@ -42,9 +42,8 @@ def callback():
     return 'OK'
 
 # MessageEvent
-def make_button_template():
+def make_carousel_template():
     message_template = TemplateSendMessage(
-        message_template = TemplateSendMessage(
         alt_text="にゃーん",
         template=ButtonsTemplate(
             text="どこに表示されるかな？",
@@ -64,7 +63,7 @@ def make_button_template():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if '位置情報' in event.message.text:
-        messages = make_button_template()
+        messages = make_carousel_template()
     line_bot_api.reply_message(
         event.reply_token,
         messages
