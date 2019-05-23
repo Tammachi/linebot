@@ -61,6 +61,7 @@ def make_carousel_template():
     )
     return carousel_template_message
 
+
 @handler.add(MessageEvent, message=(TextMessage))
 def handle_image_message(event):
     if '位置情報' in event.message.text:
