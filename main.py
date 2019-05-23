@@ -43,7 +43,7 @@ def callback():
 
 # MessageEvent
 def make_carousel_template():
-    message_template = TemplateSendMessage(
+    carousel_template_message = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
             columns=[
@@ -90,7 +90,7 @@ def make_carousel_template():
             ]
         )
     )
-    return message_template
+    return carousel_template_message
 
 @handler.add(MessageEvent, message=(TextMessage))
 def handle_message(event):
