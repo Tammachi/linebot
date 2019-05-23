@@ -8,7 +8,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    FollowEvent, MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage, TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction, URIAction
+    FollowEvent, MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage, TemplateSendMessage, PostbackTemplateAction, MessageTemplateAction, URITemplateAction, URIAction
 )
 import os
 
@@ -41,34 +41,65 @@ def callback():
 
     return 'OK'
 
-
 # MessageEvent
-def make_button_template():
-    message_template = TemplateSendMessage(
-        alt_text="にゃーん",
-        template=ButtonsTemplate(
-            text="どこに表示されるかな？",
-            title="タイトルですよ",
-            image_size="cover",
-            thumbnail_image_url="https://任意の画像URL.jpg",
-            actions=[
-                URIAction(
-                    uri="https://任意のページURL",
-                    label="URIアクションのLABEL"
+def make_carousel_template():
+    carousel_template_message = TemplateSendMessage(
+        alt_text='Carousel template',
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url='https://example.com/item1.jpg',
+                    title='this is menu1',
+                    text='description1',
+                    actions=[
+                        PostbackAction(
+                            label='postback1',
+                            text='postback text1',
+                            data='action=buy&itemid=1'
+                        ),
+                        MessageAction(
+                            label='message1',
+                            text='message text1'
+                        ),
+                        URIAction(
+                            label='uri1',
+                            uri='http://example.com/1'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://example.com/item2.jpg',
+                    title='this is menu2',
+                    text='description2',
+                    actions=[
+                        PostbackAction(
+                            label='postback2',
+                            text='postback text2',
+                            data='action=buy&itemid=2'
+                        ),
+                        MessageAction(
+                            label='message2',
+                            text='message text2'
+                        ),
+                        URIAction(
+                            label='uri2',
+                            uri='http://example.com/2'
+                        )
+                    ]
                 )
             ]
         )
     )
-    return message_template
-
+    return carousel_template_message
 
 @handler.add(MessageEvent, message=(TextMessage))
-def handle_image_message(event):
-    messages = make_button_template()
+def handle_message(event):
+    if '位置情報' in event.message.text:
+        messages = make_carousel_template()
     line_bot_api.reply_message(
         event.reply_token,
         messages
-    )
+        )
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
