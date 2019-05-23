@@ -43,14 +43,14 @@ def callback():
 
 
 # MessageEvent
-def make_carousel_template():
-    carousel_template_message = TemplateSendMessage(
-        alt_text="うんちうんち",
+def make_button_template():
+    message_template = TemplateSendMessage(
+        alt_text="にゃーん",
         template=ButtonsTemplate(
-            text="京都府京都市。「清水の舞台」で知られる寺院。北法相宗の本山（一寺一宗）。縁起、年中行事、境内案内",
-            title="清水寺",
+            text="どこに表示されるかな？",
+            title="タイトルですよ",
             image_size="cover",
-            thumbnail_image_url="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:Kiyomizu_Temple_-_01.jpg",
+            thumbnail_image_url="https://任意の画像URL.jpg",
             actions=[
                 URIAction(
                     uri="https://任意のページURL",
@@ -59,13 +59,12 @@ def make_carousel_template():
             ]
         )
     )
-    return carousel_template_message
+    return message_template
 
 
 @handler.add(MessageEvent, message=(TextMessage))
 def handle_image_message(event):
-    if '位置情報' in event.message.text:
-        messages = make_carousel_template()
+    messages = make_button_template()
     line_bot_api.reply_message(
         event.reply_token,
         messages
