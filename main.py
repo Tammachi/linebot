@@ -47,16 +47,16 @@ def handle_message(event):
     if '位置情報' in event.message.text:
         $columns = array(
                         array('thumbnailImageUrl' => '画像のURL',
-                            'title'   => 'タイトル最大４０文字',
-                            'text'    => 'タイトルか画像がある場合は最大60文字、どちらもない場合は最大120文字',
-                            'actions' => array(array('type' => 'message', 'label' => 'ラベルです', 'text' => 'メッセージ'))
-                 ),
-                 array('thumbnailImageUrl' => '画像のURL',
-                       'title'   => 'タイトル最大４０文字',
-                       'text'    => 'タイトルか画像がある場合は最大60文字、どちらもない場合は最大120文字',
-                       'actions' => array(array('type' => 'message', 'label' => 'ラベルです', 'text' => 'メッセージ'))
-                 )
-            );
+                            　'title'   => 'タイトル最大４０文字',
+                            　'text'    => 'タイトルか画像がある場合は最大60文字、どちらもない場合は最大120文字',
+                            　'actions' => array(array('type' => 'message', 'label' => 'ラベルです', 'text' => 'メッセージ'))
+                        ),
+                        array('thumbnailImageUrl' => '画像のURL',
+                            　'title'   => 'タイトル最大４０文字',
+                            　'text'    => 'タイトルか画像がある場合は最大60文字、どちらもない場合は最大120文字',
+                            　'actions' => array(array('type' => 'message', 'label' => 'ラベルです', 'text' => 'メッセージ'))
+                        )
+                    );
 
         $template = array('type'    => 'carousel',
                     'columns' => $columns,
