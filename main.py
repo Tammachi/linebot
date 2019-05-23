@@ -90,7 +90,7 @@ def make_carousel_template():
             ]
         )
     )
-    return carousel_template_message
+    return CarouselTemplate
 
 @handler.add(MessageEvent, message=(TextMessage))
 def handle_message(event):
