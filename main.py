@@ -44,12 +44,12 @@ def callback():
 # MessageEvent
 def make_carousel_template():
     message_template = TemplateSendMessage(
-        alt_text="にゃーん",
+        alt_text="うんちうんち",
         template=ButtonsTemplate(
-            text="どこに表示されるかな？",
-            title="タイトルですよ",
+            text="京都府京都市。「清水の舞台」で知られる寺院。北法相宗の本山（一寺一宗）。縁起、年中行事、境内案内",
+            title="清水寺",
             image_size="cover",
-            thumbnail_image_url="https://任意の画像URL.jpg",
+            thumbnail_image_url="https://www.google.com/search?q=%E6%B8%85%E6%B0%B4%E5%AF%BA&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjP7oaS4bDiAhUKPXAKHR6uDQAQ_AUIDygC&biw=681&bih=615#imgrc=nBERCX3Y30QuhM:",
             actions=[
                 URIAction(
                     uri="https://任意のページURL",
