@@ -8,8 +8,8 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    FollowEvent, MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage, TemplateSendMessage, PostbackTemplateAction, MessageTemplateAction, URITemplateAction, URIAction
-)
+    MessageEvent, TextMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn)
+
 import os
 
 # 軽量なウェブアプリケーションフレームワーク:Flask
