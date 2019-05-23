@@ -60,7 +60,7 @@ def make_carousel_template():
     )
     return message_template
 
-@handler.add(MessageEvent, message=TextMessage)
+@handler.add(MessageEvent, message=(TextMessage))
 def handle_message(event):
     if '位置情報' in event.message.text:
         messages = make_carousel_template()
@@ -68,7 +68,6 @@ def handle_message(event):
         event.reply_token,
         messages
         )
-    )
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
