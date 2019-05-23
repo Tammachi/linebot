@@ -66,12 +66,6 @@ def handle_message(event):
                     'altText'  => '代替テキスト',
                     'template' => $template
                     );
-    else:
-        content = '「' + event.message.text +'」はおっぱいじゃないです'
-            line_bot_api.reply_message(
-                event.reply_token,
-                    TextSendMessage(text=content)
-    )
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
