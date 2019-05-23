@@ -8,7 +8,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn)
+    MessageEvent, TextMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn,URIAction,MessageAction,PostbackAction)
 
 import os
 
@@ -93,13 +93,12 @@ def make_carousel_template():
     return carousel_template_message
 
 @handler.add(MessageEvent, message=(TextMessage))
-def handle_message(event):
-    if '位置情報' in event.message.text:
-        messages = make_carousel_template()
+def handle_image_message(event):
+    messages = make_carousel_template()
     line_bot_api.reply_message(
         event.reply_token,
-        messages = messages
-        )
+        messages
+    )
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
