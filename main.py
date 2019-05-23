@@ -49,8 +49,8 @@ def make_carousel_template():
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://example.com/item1.jpg',
-                    title='this is menu1',
-                    text='description1',
+                    title='清水寺',
+                    text='うんち1',
                     actions=[
                         PostbackAction(
                             label='postback1',
@@ -64,6 +64,66 @@ def make_carousel_template():
                         URIAction(
                             label='uri1',
                             uri='http://example.com/1'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://example.com/item2.jpg',
+                    title='this is menu2',
+                    text='description2',
+                    actions=[
+                        PostbackAction(
+                            label='postback2',
+                            text='postback text2',
+                            data='action=buy&itemid=2'
+                        ),
+                        MessageAction(
+                            label='message2',
+                            text='message text2'
+                        ),
+                        URIAction(
+                            label='uri2',
+                            uri='http://example.com/2'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://example.com/item2.jpg',
+                    title='this is menu2',
+                    text='description2',
+                    actions=[
+                        PostbackAction(
+                            label='postback2',
+                            text='postback text2',
+                            data='action=buy&itemid=2'
+                        ),
+                        MessageAction(
+                            label='message2',
+                            text='message text2'
+                        ),
+                        URIAction(
+                            label='uri2',
+                            uri='http://example.com/2'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://example.com/item2.jpg',
+                    title='this is menu2',
+                    text='description2',
+                    actions=[
+                        PostbackAction(
+                            label='postback2',
+                            text='postback text2',
+                            data='action=buy&itemid=2'
+                        ),
+                        MessageAction(
+                            label='message2',
+                            text='message text2'
+                        ),
+                        URIAction(
+                            label='uri2',
+                            uri='http://example.com/2'
                         )
                     ]
                 ),
