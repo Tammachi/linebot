@@ -68,9 +68,9 @@ def handle_message(event):
                     );
     else:
         content = '「' + event.message.text +'」はおっぱいじゃないです'
-    line_bot_api.reply_message(
-        event.reply_token,
-            TextSendMessage(text=content)
+            line_bot_api.reply_message(
+                event.reply_token,
+                    TextSendMessage(text=content)
     )
 
 if __name__ == "__main__":
