@@ -51,13 +51,17 @@ def make_carousel_template():
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://example.com/item1.jpg',
-                    title=''+title1+'',
+                    title='うんちうんち',
                     text='うんち1',
                     actions=[
                         PostbackAction(
                             label='ここに行く',
                             //text='postback text1',
                             data='action=buy&itemid=1'
+                        ),
+                        MessageAction(
+                            label='ここに行く！',
+                            text='message text2'
                         ),
                         URIAction(
                             label='uri1',
