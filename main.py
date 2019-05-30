@@ -48,7 +48,7 @@ def make_carousel_template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://d.kuku.lu/cf3676089e',
+                    thumbnail_image_url='kyou.jpeg',
                     title='title1',
                     text='text1',
                     actions=[
