@@ -41,24 +41,26 @@ def callback():
 
     return 'OK'
 
+def judgement():
+
 # MessageEvent
 def make_carousel_template():
     carousel_template_message = TemplateSendMessage(
-        alt_text='Carousel template',
+        alt_text='ちんちん',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://example.com/item1.jpg',
-                    title='清水寺',
+                    title=''+title1+'',
                     text='うんち1',
                     actions=[
                         PostbackAction(
                             label='postback1',
-                            text='postback text1',
+                            //text='postback text1',
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
-                            label='message1',
+                            label='ここに行く！',
                             text='message text1'
                         ),
                         URIAction(
@@ -78,7 +80,7 @@ def make_carousel_template():
                             data='action=buy&itemid=2'
                         ),
                         MessageAction(
-                            label='message2',
+                            label='ここに行く！',
                             text='message text2'
                         ),
                         URIAction(
@@ -98,7 +100,7 @@ def make_carousel_template():
                             data='action=buy&itemid=2'
                         ),
                         MessageAction(
-                            label='message2',
+                            label='ここに行く！',
                             text='message text2'
                         ),
                         URIAction(
@@ -118,7 +120,7 @@ def make_carousel_template():
                             data='action=buy&itemid=2'
                         ),
                         MessageAction(
-                            label='message2',
+                            label='ここに行く！',
                             text='message text2'
                         ),
                         URIAction(
@@ -138,7 +140,7 @@ def make_carousel_template():
                             data='action=buy&itemid=2'
                         ),
                         MessageAction(
-                            label='message2',
+                            label='ここに行く！',
                             text='message text2'
                         ),
                         URIAction(
