@@ -55,13 +55,9 @@ def make_carousel_template():
                     text='うんち1',
                     actions=[
                         PostbackAction(
-                            label='postback1',
+                            label='ここに行く',
                             //text='postback text1',
                             data='action=buy&itemid=1'
-                        ),
-                        MessageAction(
-                            label='ここに行く！',
-                            text='message text1'
                         ),
                         URIAction(
                             label='uri1',
