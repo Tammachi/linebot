@@ -49,17 +49,17 @@ def make_carousel_template():
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://example.com/item1.jpg',
-                    title='this is menu1',
-                    text='description1',
+                    title='title1',
+                    text='text1',
                     actions=[
                         PostbackAction(
-                            label='postback1',
-                            text='postback text1',
+                            label='ここに行く！',
+                            text='back1',
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
-                            label='message1',
-                            text='message text1'
+                            label='詳しく見る。',
+                            text='open1'
                         ),
                         URIAction(
                             label='uri1',
@@ -69,17 +69,17 @@ def make_carousel_template():
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://example.com/item2.jpg',
-                    title='this is menu2',
-                    text='description2',
+                    title='title2',
+                    text='text2',
                     actions=[
                         PostbackAction(
-                            label='postback2',
-                            text='postback text2',
+                            label='ここに行く！',
+                            text='back2',
                             data='action=buy&itemid=2'
                         ),
                         MessageAction(
-                            label='message2',
-                            text='message text2'
+                            label='詳しく見る。',
+                            text='open2'
                         ),
                         URIAction(
                             label='uri2',
