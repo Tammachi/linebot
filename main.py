@@ -35,7 +35,7 @@ from linebot.models import (
 route_search_longitude =999
 route_search_latitude =999
 
-unti = あああ
+unti = 'あああ'
 app = Flask(__name__)
 
 #con = sqlite3.connect('DSIGHT.csv')
@@ -81,7 +81,7 @@ def make_carousel_template():
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title='text=unti',
+                    title = unti,
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
