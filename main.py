@@ -33,7 +33,6 @@ from linebot.models import (
 # グローバル変数の宣言
 route_search_longitude =999
 route_search_latitude =999
-unti = 'うんち'
 
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
@@ -83,11 +82,11 @@ def make_carousel_template():
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
                     title=place[0],
-                    text='京都府京都市東山区清水にある寺院。',
+                    text=detail[0],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text='Detail1',
+                            text=place[0],
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
@@ -102,12 +101,12 @@ def make_carousel_template():
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title='Detail1',
-                    text='京都府京都市東山区清水にある寺院。',
+                    title=place[1],
+                    text=detail[1],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text='Detail1',
+                            text=place[1],
                             data='action=buy&itemid=2'
                         ),
                         MessageAction(
@@ -122,12 +121,12 @@ def make_carousel_template():
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title='Detail1',
-                    text='京都府京都市東山区清水にある寺院。',
+                    title=place[2],
+                    text=detail[2],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text='Detail1',
+                            text=place[2],
                             data='action=buy&itemid=3'
                         ),
                         MessageAction(
@@ -142,12 +141,12 @@ def make_carousel_template():
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title='Detail1',
-                    text='京都府京都市東山区清水にある寺院。',
+                    title=place[3],
+                    text=detail[3],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text='Detail1',
+                            text=place[3],
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
@@ -162,12 +161,12 @@ def make_carousel_template():
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/d/d3/Kinkaku-ji_2015.JPG',
-                    title='鹿苑寺',
-                    text='京都市北区にある臨済宗相国寺派の寺',
+                    title=place[4],
+                    text=detail[4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text='鹿苑寺',
+                            text=place[4],
                             data='action=buy&itemid=2'
                         ),
                         MessageAction(
