@@ -34,9 +34,10 @@ from linebot.models import (
 route_search_longitude =999
 route_search_latitude =999
 pd_select_address = 1940037
-
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
+
+file_path='DSIGHT.csv'
 
 app = Flask(__name__)
 
@@ -71,7 +72,8 @@ def callback():
 
     return 'OK'
 
-#def select_place_detail():
+#送られてきた位置情報から、近い場所とその情報を選択する
+def select_place_detail():
 #"SELECT * From 郵便番号簿 WHERE 郵便番号 LIKE ='" & 番号 & "';"
 
 # カルーセルテンプレートメッセージ
@@ -202,7 +204,13 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
-        content = 'まだその言葉はわかりません。近くの観光情報を知りたいときは、メニューの「観光情報」を押してください。'
+        csvfile = open(file_path, 'r', newline='', encoding='shift_jis')
+        reader = csv.reader(f)
+        header = next(csv_reader)
+        #for row in reader:
+        print(2)
+        csvfile.close()
+        content = reader.linenum
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
