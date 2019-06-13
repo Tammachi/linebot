@@ -187,16 +187,16 @@ def make_carousel_template():
 # メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    #global route_search_latitude
-    #global route_search_longitude
+    global route_search_latitude
+    global route_search_longitude
     if '近くの観光情報を教えて' in event.message.text:
         content = 'わかりました！位置情報を送ってください！'
         route_search_latitude=999
         route_search_longitude=999
     elif route_search_latitude != 999 and route_search_longitude != 999:
         google_map_url = 'http://maps.google.com/maps?'
-        google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)
-        google_map_url += "daddr={}".format(event.message.text)
+        google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)#現在地location
+        google_map_url += "daddr={}".format(event.message.text)#行く先
         content = google_map_url
         route_search_latitude=999
         route_search_longitude=999
@@ -211,8 +211,8 @@ def handle_message(event):
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_image_message(event):
     messages = make_carousel_template()
-    #global route_search_latitude
-    #global route_search_longitude
+    global route_search_latitude
+    global route_search_longitude
     route_search_latitude=event.message.latitude
     route_search_longitude=event.message.longitude
     line_bot_api.reply_message(
