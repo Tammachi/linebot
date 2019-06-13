@@ -87,7 +87,7 @@ def make_carousel_template():
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=Detail1,
+                            text='Detail1',
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
@@ -107,7 +107,7 @@ def make_carousel_template():
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=Detail2,
+                            text='Detail1',
                             data='action=buy&itemid=2'
                         ),
                         MessageAction(
@@ -127,7 +127,7 @@ def make_carousel_template():
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=Detail3,
+                            text='Detail1',
                             data='action=buy&itemid=3'
                         ),
                         MessageAction(
@@ -147,7 +147,7 @@ def make_carousel_template():
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=Detail4,
+                            text='Detail1',
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
