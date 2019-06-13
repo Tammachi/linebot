@@ -187,8 +187,8 @@ def make_carousel_template():
 # メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    global route_search_latitude
-    global route_search_longitude
+    #global route_search_latitude
+    #global route_search_longitude
     if '近くの観光情報を教えて' in event.message.text:
         content = 'わかりました！位置情報を送ってください！'
         route_search_latitude=999
