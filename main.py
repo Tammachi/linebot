@@ -205,7 +205,6 @@ def handle_message(event):
         content = 'まだその言葉はわかりません。近くの観光情報を知りたいときは、メニューの「観光情報」を押してください。'
     line_bot_api.reply_message(
         event.reply_token,
-        content=event.message.address
             TextSendMessage(text=content)
     )
 
