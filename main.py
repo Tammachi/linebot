@@ -34,10 +34,11 @@ from linebot.models import (
 route_search_longitude =999
 route_search_latitude =999
 pd_select_address = 1940037
-place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
-detail=['うんち','うんち','うんち','うんち','うんち']
+#place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
+#detail=['うんち','うんち','うんち','うんち','うんち']
 
-file_path='DSIGHT.csv'
+place_list=[]
+detail_list=[]
 
 app = Flask(__name__)
 
@@ -204,13 +205,13 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
+        file_path='DSIGHT.csv'
         csvfile = open(file_path, 'r', newline='', encoding='shift_jis')
-        reader = csv.reader(f)
+        reader = csv.reader(csvfile)
         header = next(csv_reader)
-        #for row in reader:
-        print(2)
+        content = reader
         csvfile.close()
-        content = reader.linenum
+        
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
