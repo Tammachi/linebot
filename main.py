@@ -35,11 +35,8 @@ route_search_longitude =999
 route_search_latitude =999
 unti = 'うんち'
 
-Detail1="清水寺"
-Detail2="金閣寺"
-Detail3="銀閣寺"
-Detail4="伏見稲荷大社"
-Detail5="三十三間堂"
+title=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
+detail=['うんち','うんち','うんち','うんち','うんち']
 
 app = Flask(__name__)
 
@@ -79,19 +76,18 @@ def callback():
 
 # カルーセルテンプレートメッセージ
 def make_carousel_template():
-    global unti
     carousel_template_message = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=Detail1,
+                    title=title[1],
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text='清水寺',
+                            text=Detail1,
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
@@ -106,61 +102,61 @@ def make_carousel_template():
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title='清水寺',
+                    title=Detail2,
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text='清水寺',
-                            data='action=buy&itemid=1'
+                            text=Detail2,
+                            data='action=buy&itemid=2'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text='open1'
+                            text='open2'
                         ),
                         URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
+                            label='uri2',
+                            uri='http://example.com/2'
                         )
                     ]
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title='清水寺',
+                    title=Detail3,
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text='清水寺',
-                            data='action=buy&itemid=1'
+                            text=Detail3,
+                            data='action=buy&itemid=3'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text='open1'
+                            text='open3'
                         ),
                         URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
+                            label='uri3',
+                            uri='http://example.com/3'
                         )
                     ]
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title='清水寺',
+                    title=Detail4,
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text='清水寺',
+                            text=Detail4,
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text='open1'
+                            text='open3'
                         ),
                         URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
+                            label='uri3',
+                            uri='http://example.com/3'
                         )
                     ]
                 ),
