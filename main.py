@@ -71,8 +71,8 @@ def callback():
 
     return 'OK'
 
-def select_place_detail():
-"SELECT * From 郵便番号簿 WHERE 郵便番号 LIKE ='" & 番号 & "';"
+#def select_place_detail():
+#"SELECT * From 郵便番号簿 WHERE 郵便番号 LIKE ='" & 番号 & "';"
 
 # カルーセルテンプレートメッセージ
 def make_carousel_template():
