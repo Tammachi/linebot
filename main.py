@@ -35,7 +35,7 @@ route_search_longitude =999
 route_search_latitude =999
 unti = 'うんち'
 
-title=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
+place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
 
 app = Flask(__name__)
@@ -82,7 +82,7 @@ def make_carousel_template():
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=title[1],
+                    title=place[0],
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
