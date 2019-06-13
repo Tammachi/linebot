@@ -73,7 +73,7 @@ def callback():
     return 'OK'
 
 #送られてきた位置情報から、近い場所とその情報を選択する
-def select_place_detail():
+#def select_place_detail():
 #"SELECT * From 郵便番号簿 WHERE 郵便番号 LIKE ='" & 番号 & "';"
 
 # カルーセルテンプレートメッセージ
