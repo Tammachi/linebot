@@ -14,6 +14,10 @@
 
 import os
 import sys
+import csv
+import sqlite3
+import pandas as pd
+
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -31,7 +35,11 @@ from linebot.models import (
 route_search_longitude =999
 route_search_latitude =999
 
+unti = あああ
 app = Flask(__name__)
+
+con = sqlite3.connect('DSIGHT.csv')
+cursor = con.cursor()
 
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
@@ -64,12 +72,74 @@ def callback():
 
     return 'OK'
 
+
+
 # カルーセルテンプレートメッセージ
 def make_carousel_template():
     carousel_template_message = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
             columns=[
+                CarouselColumn(
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    title='text=unti',
+                    text='京都府京都市東山区清水にある寺院。',
+                    actions=[
+                        PostbackAction(
+                            label='ここに行く！',
+                            text='清水寺',
+                            data='action=buy&itemid=1'
+                        ),
+                        MessageAction(
+                            label='詳しく見る。',
+                            text='open1'
+                        ),
+                        URIAction(
+                            label='uri1',
+                            uri='http://example.com/1'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    title='清水寺',
+                    text='京都府京都市東山区清水にある寺院。',
+                    actions=[
+                        PostbackAction(
+                            label='ここに行く！',
+                            text='清水寺',
+                            data='action=buy&itemid=1'
+                        ),
+                        MessageAction(
+                            label='詳しく見る。',
+                            text='open1'
+                        ),
+                        URIAction(
+                            label='uri1',
+                            uri='http://example.com/1'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    title='清水寺',
+                    text='京都府京都市東山区清水にある寺院。',
+                    actions=[
+                        PostbackAction(
+                            label='ここに行く！',
+                            text='清水寺',
+                            data='action=buy&itemid=1'
+                        ),
+                        MessageAction(
+                            label='詳しく見る。',
+                            text='open1'
+                        ),
+                        URIAction(
+                            label='uri1',
+                            uri='http://example.com/1'
+                        )
+                    ]
+                ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
                     title='清水寺',
