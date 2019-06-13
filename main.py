@@ -33,7 +33,7 @@ from linebot.models import (
 # グローバル変数の宣言
 route_search_longitude =999
 route_search_latitude =999
-
+unti = 'うんち'
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
@@ -72,13 +72,14 @@ def callback():
 
 # カルーセルテンプレートメッセージ
 def make_carousel_template():
+    global unti
     carousel_template_message = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title='清水寺',
+                    title='text=unti',
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
