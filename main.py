@@ -34,6 +34,13 @@ from linebot.models import (
 route_search_longitude =999
 route_search_latitude =999
 unti = 'うんち'
+
+Detail1="清水寺"
+Detail2="金閣寺"
+Detail3="銀閣寺"
+Detail4="伏見稲荷大社"
+Detail5="三十三間堂"
+
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
@@ -79,7 +86,7 @@ def make_carousel_template():
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=unti,
+                    title=Detail1,
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
