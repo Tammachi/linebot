@@ -79,7 +79,7 @@ def make_carousel_template():
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title='text=unti',
+                    title=unti,
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
