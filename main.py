@@ -102,7 +102,7 @@ def make_carousel_template():
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=Detail2,
+                    title='Detail1',
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
@@ -122,7 +122,7 @@ def make_carousel_template():
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=Detail3,
+                    title='Detail1',
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
@@ -142,7 +142,7 @@ def make_carousel_template():
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=Detail4,
+                    title='Detail1',
                     text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
