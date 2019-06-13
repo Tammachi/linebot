@@ -33,6 +33,7 @@ from linebot.models import (
 # グローバル変数の宣言
 route_search_longitude =999
 route_search_latitude =999
+pd_select_address = 1940037
 
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
@@ -70,8 +71,8 @@ def callback():
 
     return 'OK'
 
-
-
+def select_place_detail():
+"SELECT * From 郵便番号簿 WHERE 郵便番号 LIKE ='" & 番号 & "';"
 
 # カルーセルテンプレートメッセージ
 def make_carousel_template():
@@ -215,6 +216,7 @@ def handle_image_message(event):
     global route_search_longitude
     route_search_latitude=event.message.latitude
     route_search_longitude=event.message.longitude
+
     line_bot_api.reply_message(
         event.reply_token,
         [
