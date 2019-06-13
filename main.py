@@ -34,12 +34,11 @@ from linebot.models import (
 route_search_longitude =999
 route_search_latitude =999
 pd_select_address = 1940037
-#place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
-#detail=['うんち','うんち','うんち','うんち','うんち']
+place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
+detail=['うんち','うんち','うんち','うんち','うんち']
 
 place_list = []
 detail_list = []
-
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
@@ -211,7 +210,6 @@ def handle_message(event):
             for row in reader:
                 count += 1
                 place_list[count],detail_list[count]=row['名前'],row['説明']
-                
         content = place_list[1]
 
     line_bot_api.reply_message(
