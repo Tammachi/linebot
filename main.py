@@ -1,6 +1,22 @@
-# インポートするライブラリ
-from flask import Flask, request, abort
+# -*- coding: utf-8 -*-
 
+#  Licensed under the Apache License, Version 2.0 (the "License"); you may
+#  not use this file except in compliance with the License. You may obtain
+#  a copy of the License at
+#
+#       https://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#  License for the specific language governing permissions and limitations
+#  under the License.
+
+import os
+import sys
+from argparse import ArgumentParser
+
+from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -8,21 +24,28 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn,URIAction,MessageAction,PostbackAction)
+    MessageEvent, TextMessage, TextSendMessage, LocationMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn, URIAction, MessageAction, PostbackAction
+)
 
-import os
+# グローバル変数の宣言
+route_search_longitude =999
+route_search_latitude =999
 
-# 軽量なウェブアプリケーションフレームワーク:Flask
 app = Flask(__name__)
 
+# get channel_secret and channel_access_token from your environment variable
+channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
+channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
+if channel_secret is None:
+    print('Specify LINE_CHANNEL_SECRET as environment variable.')
+    sys.exit(1)
+if channel_access_token is None:
+    print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
+    sys.exit(1)
 
-#環境変数からLINE Access Tokenを設定
-LINE_CHANNEL_ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
-#環境変数からLINE Channel Secretを設定
-LINE_CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
+line_bot_api = LineBotApi(channel_access_token)
+handler = WebhookHandler(channel_secret)
 
-line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -41,20 +64,20 @@ def callback():
 
     return 'OK'
 
-# MessageEvent
+# カルーセルテンプレートメッセージ
 def make_carousel_template():
     carousel_template_message = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://d.kuku.lu/cf3676089e',
-                    title='title1',
-                    text='text1',
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    title='清水寺',
+                    text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text='back1',
+                            text='清水寺',
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
@@ -68,13 +91,13 @@ def make_carousel_template():
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url='https://example.com/item2.jpg',
-                    title='title2',
-                    text='text2',
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/d/d3/Kinkaku-ji_2015.JPG',
+                    title='鹿苑寺',
+                    text='京都市北区にある臨済宗相国寺派の寺',
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text='back2',
+                            text='鹿苑寺',
                             data='action=buy&itemid=2'
                         ),
                         MessageAction(
@@ -92,15 +115,46 @@ def make_carousel_template():
     )
     return carousel_template_message
 
-@handler.add(MessageEvent, message=(TextMessage))
-def handle_image_message(event):
-    if '位置情報' in event.message.text:
-        messages = make_carousel_template()
+# メッセージイベントの場合の処理
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    global route_search_latitude
+    global route_search_longitude
+    if '近くの観光情報を教えて' in event.message.text:
+        content = 'わかりました！位置情報を送ってください！'
+        route_search_latitude=999
+        route_search_longitude=999
+    elif route_search_latitude != 999 and route_search_longitude != 999:
+        google_map_url = 'http://maps.google.com/maps?'
+        google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)
+        google_map_url += "daddr={}".format(event.message.text)
+        content = google_map_url
+        route_search_latitude=999
+        route_search_longitude=999
+    else:
+        content = 'まだその言葉はわかりません。近くの観光情報を知りたいときは、メニューの「観光情報」を押してください。'
     line_bot_api.reply_message(
         event.reply_token,
-        messages
+            TextSendMessage(text=content)
     )
 
+# 位置情報メッセージイベントの場合の処理
+@handler.add(MessageEvent, message=LocationMessage)
+def handle_image_message(event):
+    messages = make_carousel_template()
+    global route_search_latitude
+    global route_search_longitude
+    route_search_latitude=event.message.latitude
+    route_search_longitude=event.message.longitude
+    line_bot_api.reply_message(
+        event.reply_token,
+        [
+            TextSendMessage(text='近くの観光地はここです！'),
+            messages
+        ]
+    )
+
+
 if __name__ == "__main__":
-    port = int(os.getenv("PORT"))
+    port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
