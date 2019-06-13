@@ -198,13 +198,14 @@ def handle_message(event):
         google_map_url = 'http://maps.google.com/maps?'
         google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)#現在地location
         google_map_url += "daddr={}".format(event.message.text)#行く先
-        content = event.message.address
+        content = google_map_url
         route_search_latitude=999
         route_search_longitude=999
     else:
         content = 'まだその言葉はわかりません。近くの観光情報を知りたいときは、メニューの「観光情報」を押してください。'
     line_bot_api.reply_message(
         event.reply_token,
+        content=event.message.address
             TextSendMessage(text=content)
     )
 
@@ -214,6 +215,7 @@ def handle_image_message(event):
     messages = make_carousel_template()
     global route_search_latitude
     global route_search_longitude
+
     route_search_latitude=event.message.latitude
     route_search_longitude=event.message.longitude
 
