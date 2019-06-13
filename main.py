@@ -38,8 +38,8 @@ route_search_latitude =999
 unti = あああ
 app = Flask(__name__)
 
-con = sqlite3.connect('DSIGHT.csv')
-cursor = con.cursor()
+#con = sqlite3.connect('DSIGHT.csv')
+#cursor = con.cursor()
 
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
@@ -71,7 +71,6 @@ def callback():
         abort(400)
 
     return 'OK'
-
 
 
 # カルーセルテンプレートメッセージ
