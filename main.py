@@ -213,8 +213,8 @@ def handle_image_message(event):
     messages = make_carousel_template()
     #global route_search_latitude
     #global route_search_longitude
-    #route_search_latitude=event.message.latitude
-    #route_search_longitude=event.message.longitude
+    route_search_latitude=event.message.latitude
+    route_search_longitude=event.message.longitude
     line_bot_api.reply_message(
         event.reply_token,
         [
