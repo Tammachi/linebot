@@ -34,7 +34,6 @@ from linebot.models import (
 # グローバル変数の宣言
 route_search_longitude =999
 route_search_latitude =999
-ti1 = 'あああ'
 
 app = Flask(__name__)
 
