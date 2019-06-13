@@ -198,7 +198,7 @@ def handle_message(event):
         google_map_url = 'http://maps.google.com/maps?'
         google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)#現在地location
         google_map_url += "daddr={}".format(event.message.text)#行く先
-        content = google_map_url
+        content = event.message.address
         route_search_latitude=999
         route_search_longitude=999
     else:
