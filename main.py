@@ -206,7 +206,7 @@ def handle_message(event):
         count = 0
         place_list = []
         detail_list = []
-        file_path='linekanko/test.csv'
+        file_path='test.csv'
         with open(file_path, 'r', newline='', encoding='utf_8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
