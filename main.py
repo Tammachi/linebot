@@ -204,6 +204,7 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
+        count = 0
         file_path='test.csv'
         with open(file_path, 'r', newline='', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
@@ -211,7 +212,7 @@ def handle_message(event):
                 count += 1
                 place_list[count],detail_list[count] = row['名前'], row['説明']
         content = place_list[1]
-        
+
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text = content)
