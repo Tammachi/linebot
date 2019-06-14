@@ -209,7 +209,7 @@ def handle_message(event):
         with open(file_path, 'r', newline='', encoding='utf_8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                place_list[count],detail_list[count] = row["名前"], row["説明"]
+                place_list[count],detail_list[count] = row.get["名前"], row.get["説明"]
                 count += 1
         content = place_list[1]
 
