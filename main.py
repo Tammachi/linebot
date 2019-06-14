@@ -206,10 +206,9 @@ def handle_message(event):
         detail_list = []
         with open('test.csv', 'r') as csvfile:
             reader = csv.DictReader(csvfile)
-            for row in reader:
-                place_list = row['名前']
-
-        content = place_list
+            place_list = for row in reader:
+                 #row['名前']
+        content = place_list[1]
 
     line_bot_api.reply_message(
         event.reply_token,
