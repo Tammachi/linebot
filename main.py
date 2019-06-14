@@ -204,7 +204,7 @@ def handle_message(event):
     else:
         csvfile = open('test.csv', 'r')
         reader = csv.DictReader(csvfile)
-        place_list = [e for e in reader]
+        place_list = [for e in reader]
         content = place_list[1]
 
     line_bot_api.reply_message(
