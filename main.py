@@ -14,8 +14,6 @@
 
 import os
 import sys
-import csv
-
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -32,9 +30,6 @@ from linebot.models import (
 # グローバル変数の宣言
 route_search_longitude =999
 route_search_latitude =999
-pd_select_address = 1940037
-place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
-detail=['うんち','うんち','うんち','うんち','うんち']
 
 app = Flask(__name__)
 
@@ -69,10 +64,6 @@ def callback():
 
     return 'OK'
 
-#送られてきた位置情報から、近い場所とその情報を選択する
-#def select_place_detail():
-#"SELECT * From 郵便番号簿 WHERE 郵便番号 LIKE ='" & 番号 & "';"
-
 # カルーセルテンプレートメッセージ
 def make_carousel_template():
     carousel_template_message = TemplateSendMessage(
@@ -81,12 +72,12 @@ def make_carousel_template():
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=place[0],
-                    text=detail[0],
+                    title='清水寺',
+                    text='京都府京都市東山区清水にある寺院。',
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=place[0],
+                            text='清水寺',
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
@@ -100,73 +91,13 @@ def make_carousel_template():
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=place[1],
-                    text=detail[1],
-                    actions=[
-                        PostbackAction(
-                            label='ここに行く！',
-                            text=place[1],
-                            data='action=buy&itemid=2'
-                        ),
-                        MessageAction(
-                            label='詳しく見る。',
-                            text='open2'
-                        ),
-                        URIAction(
-                            label='uri2',
-                            uri='http://example.com/2'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=place[2],
-                    text=detail[2],
-                    actions=[
-                        PostbackAction(
-                            label='ここに行く！',
-                            text=place[2],
-                            data='action=buy&itemid=3'
-                        ),
-                        MessageAction(
-                            label='詳しく見る。',
-                            text='open3'
-                        ),
-                        URIAction(
-                            label='uri3',
-                            uri='http://example.com/3'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=place[3],
-                    text=detail[3],
-                    actions=[
-                        PostbackAction(
-                            label='ここに行く！',
-                            text=place[3],
-                            data='action=buy&itemid=1'
-                        ),
-                        MessageAction(
-                            label='詳しく見る。',
-                            text='open3'
-                        ),
-                        URIAction(
-                            label='uri3',
-                            uri='http://example.com/3'
-                        )
-                    ]
-                ),
-                CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/d/d3/Kinkaku-ji_2015.JPG',
-                    title=place[4],
-                    text=detail[4],
+                    title='鹿苑寺',
+                    text='京都市北区にある臨済宗相国寺派の寺',
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=place[4],
+                            text='鹿苑寺',
                             data='action=buy&itemid=2'
                         ),
                         MessageAction(
@@ -195,18 +126,13 @@ def handle_message(event):
         route_search_longitude=999
     elif route_search_latitude != 999 and route_search_longitude != 999:
         google_map_url = 'http://maps.google.com/maps?'
-        google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)#現在地location
-        google_map_url += "daddr={}".format(event.message.text)#行く先
+        google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)
+        google_map_url += "daddr={}".format(event.message.text)
         content = google_map_url
         route_search_latitude=999
         route_search_longitude=999
     else:
-        file_path='DSIGHT.csv'
-        csvfile = open(file_path, 'r', newline='', encoding='shift_jis')
-        reader = csv.reader(csvfile)
-        header = next(reader)
-        for row in reader
-        content = row[1]
+        content = 'まだその言葉はわかりません。近くの観光情報を知りたいときは、メニューの「観光情報」を押してください。'
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
