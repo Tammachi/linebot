@@ -202,10 +202,9 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
-        with open('test.csv', 'r') as csvfile:
-            reader = csv.DictReader(csvfile)
-            place_list = for row in reader:
-                 #row['名前']
+        csvfile = open('test.csv', 'r')
+        reader = csv.DictReader(csvfile)
+        place_list = [e for e in reader]
         content = place_list[1]
 
     line_bot_api.reply_message(
