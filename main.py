@@ -15,7 +15,6 @@
 import os
 import sys
 import csv
-import sqlite3
 
 from argparse import ArgumentParser
 
