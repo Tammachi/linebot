@@ -206,7 +206,7 @@ def handle_message(event):
     else:
         count = 0
         file_path='test.csv'
-        with open(file_path, 'r', newline='', encoding='utf-8') as csvfile:
+        with open(file_path, 'r', newline='', encoding='utf_8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 place_list[count],detail_list[count] = row['名前'], row['説明']
