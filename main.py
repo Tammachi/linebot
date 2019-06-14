@@ -209,8 +209,8 @@ def handle_message(event):
         with open(file_path, 'r', newline='', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                count += 1
                 place_list[count],detail_list[count] = row['名前'], row['説明']
+                count += 1
         content = place_list[1]
 
     line_bot_api.reply_message(
