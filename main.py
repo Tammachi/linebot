@@ -195,10 +195,12 @@ def handle_message(event):
         route_search_longitude=999
     else:
         file_path='test.csv'
+        count=0
         csv_file = open(file_path, "r", encoding="utf_8", errors="", newline="" )
         readerr = csv.DictReader(csv_file)
         for row in readerr:
-            place = row["名前"]
+            place[count] = row["名前"]
+            count += 1
         content = place[1]
     line_bot_api.reply_message(
         event.reply_token,
