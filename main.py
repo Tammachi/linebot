@@ -199,7 +199,7 @@ def handle_message(event):
         csv_file = open(file_path, "r", encoding="utf_8", errors="", newline="" )
         readerr = csv.DictReader(csv_file)
         for row in readerr:
-            place[count] = row["名前"]
+            place[count] = row["name"]
             count += 1
         content = place[1]
     line_bot_api.reply_message(
