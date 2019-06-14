@@ -209,6 +209,7 @@ def handle_message(event):
             reader = csv.DictReader(csvfile)
             for row in reader:
                 place_list,detail_list= row.get("名前"), row.get("説明")
+                
         content = place_list[3]
 
     line_bot_api.reply_message(
