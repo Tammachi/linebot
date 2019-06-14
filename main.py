@@ -33,6 +33,7 @@ from linebot.models import (
 route_search_longitude =999
 route_search_latitude =999
 pd_select_address = 1940037
+
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
 
@@ -206,7 +207,6 @@ def handle_message(event):
         reader = csv.reader(csvfile)
         for row in reader:
         content = row[1]
-
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text = content)
