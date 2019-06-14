@@ -37,6 +37,8 @@ pd_select_address = 1940037
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
 
+place_list=[]
+detail_list=[]
 
 app = Flask(__name__)
 
@@ -203,20 +205,17 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
-        count = 0
-        place_list = []
-        detail_list = []
-        file_path='linekanko/test.csv'
-        with open(file_path, 'r', newline='', encoding='utf_8') as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                place_list,detail_list= row.get("名前"), row.get("説明")
-                count += 1
-        content = place_list[]
-
+        file_path='DSIGHT.csv'
+        csvfile = open(file_path, 'r', newline='', encoding='shift_jis')
+        reader = csv.reader(csvfile)
+        header = next(csv_reader)
+        for row in reader:
+            p
+        csvfile.close()
+        content =
     line_bot_api.reply_message(
         event.reply_token,
-            TextSendMessage(text = content)
+            TextSendMessage(text=content)
     )
 
 # 位置情報メッセージイベントの場合の処理
