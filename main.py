@@ -205,9 +205,9 @@ def handle_message(event):
         file_path='DSIGHT.csv'
         csvfile = open(file_path, 'r', newline='', encoding='shift_jis')
         reader = csv.reader(csvfile)
-        header = next(csv_reader)
-        for row in reader:
-
+        header = next(reader)
+        for row in reader
+        content = row[1]
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
@@ -221,7 +221,6 @@ def handle_image_message(event):
     global route_search_longitude
     route_search_latitude=event.message.latitude
     route_search_longitude=event.message.longitude
-
     line_bot_api.reply_message(
         event.reply_token,
         [
