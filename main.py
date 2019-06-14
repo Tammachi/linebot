@@ -37,9 +37,6 @@ pd_select_address = 1940037
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
 
-place_list=[]
-detail_list=[]
-
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
@@ -210,9 +207,7 @@ def handle_message(event):
         reader = csv.reader(csvfile)
         header = next(csv_reader)
         for row in reader:
-            p
-        csvfile.close()
-        content =
+
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
@@ -224,7 +219,6 @@ def handle_image_message(event):
     messages = make_carousel_template()
     global route_search_latitude
     global route_search_longitude
-
     route_search_latitude=event.message.latitude
     route_search_longitude=event.message.longitude
 
