@@ -198,8 +198,8 @@ def handle_message(event):
         csv_file = open(file_path, "r", encoding="utf_8", errors="", newline="" )
         readerr = csv.DictReader(csv_file)
         for row in readerr:
-            place = row
-        content = place
+            place_list = row("name")
+        content = place_list[0]
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
