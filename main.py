@@ -204,11 +204,10 @@ def handle_message(event):
     else:
         place_list = []
         detail_list = []
-        file_path='test.csv'
-        with open(file_path, 'r', newline='', encoding='utf_8') as csvfile:
+        with open('test.csv', 'r') as csvfile:
             reader = csv.DictReader(csvfile)
-            #for row in reader:
-            #    place_list,detail_list= row.get("名前"), row.get("説明")
+            for row in reader:
+                place_list,detail_list = row['名前'],row['説明']
 
         content = reader
 
