@@ -15,7 +15,6 @@
 import os
 import sys
 import csv
-import sqlite3
 
 from argparse import ArgumentParser
 
@@ -203,7 +202,6 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
-        count = 0
         place_list = []
         detail_list = []
         file_path='test.csv'
@@ -211,7 +209,6 @@ def handle_message(event):
             reader = csv.DictReader(csvfile)
             for row in reader:
                 place_list,detail_list= row.get("名前"), row.get("説明")
-                count += 1
         content = place_list[3]
 
     line_bot_api.reply_message(
