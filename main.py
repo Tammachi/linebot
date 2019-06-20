@@ -194,13 +194,16 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
-        file_path='test.csv'
-        csv_file = open(file_path, "r", encoding="utf_8", errors="", newline="" )
+        file_path = 'test.csv'
+        place_list=[]
+        csv_file = open(file_path, "r", encoding="utf-8")
         readerr = csv.DictReader(csv_file)
         for row in readerr:
             place_list = row("name")
+            
         mojiretu = join(place_list)
         content = mojiretu
+        csv_file.close()
 
     line_bot_api.reply_message(
         event.reply_token,
