@@ -199,7 +199,8 @@ def handle_message(event):
         readerr = csv.DictReader(csv_file)
         for row in readerr:
             place_list = row("name")
-        content = join(place_list)
+        mojiretu = join(place_list)
+        content = mojiretu
 
     line_bot_api.reply_message(
         event.reply_token,
