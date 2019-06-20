@@ -201,7 +201,7 @@ def handle_message(event):
         for row in readerr:
             place_list.append(row)
         #mojiretu = join(place_list)
-        content = place_list[1]
+        content = place_list
         csv_file.close()
 
     line_bot_api.reply_message(
