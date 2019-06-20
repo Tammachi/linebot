@@ -199,10 +199,9 @@ def handle_message(event):
         csv_file = open(file_path, "r", encoding="utf-8")
         readerr = csv.DictReader(csv_file)
         for row in readerr:
-            place_list = row("name")
-            
-        mojiretu = join(place_list)
-        content = mojiretu
+            place_list.append(row)
+        #mojiretu = join(place_list)
+        content = place_list[1]
         csv_file.close()
 
     line_bot_api.reply_message(
