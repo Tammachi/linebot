@@ -197,7 +197,7 @@ def handle_message(event):
         file_path = 'test.csv'
         place_list=[]
         csv_file = open(file_path, "r", encoding="utf-8")
-        readerr = csv.DictReader(csv_file)
+        readerr = csv.reader(csv_file)
         for row in readerr:
             place_list.append(row)
         #mojiretu = join(place_list)
