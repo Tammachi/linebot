@@ -14,6 +14,7 @@
 
 import os
 import sys
+import csv
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -203,7 +204,7 @@ def handle_message(event):
         #mojiretu = join(place_list)
         content = place_list
         csv_file.close()
-
+        
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
