@@ -196,15 +196,12 @@ def handle_message(event):
         route_search_longitude=999
     else:
         file_path = 'test.csv'
-        place_list=[]
-        f = open(file_path, "r", encoding="utf-8")
-        reader = csv.reader(f)
-        for row in reader:
-            place_list.append(row)
-        #mojiretu = join(place_list)
-        content = place_list
-        csv_file.close()
-        
+        with open(file_path , 'rt') as fin:
+            cin = csv.reader(fin)
+            place_list = [row for row in cin]
+
+        content = place_list[1]
+
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
