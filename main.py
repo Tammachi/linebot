@@ -75,7 +75,7 @@ def spot_data():
 #テンプレートの中身を作る
 def read_data():
     data=[]
-    csvfile = "DSIGHt.csv"
+    csvfile = "DSIGHT.csv"
     fin = open(csvfile, "r",encoding="utf-8")
     reader = csv.reader(fin)
     for row in reader:
