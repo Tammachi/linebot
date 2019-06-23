@@ -15,6 +15,7 @@
 import os
 import sys
 import csv
+
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -202,7 +203,7 @@ def handle_message(event):
         for row in reader:
             data.append(row)
         fin.close
-        content = data
+        content = data[1][1]
 
     line_bot_api.reply_message(
         event.reply_token,
