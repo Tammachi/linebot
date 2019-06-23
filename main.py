@@ -68,6 +68,17 @@ def callback():
 
     return 'OK'
 
+#テンプレートの中身を作る
+def make_template_data():
+    data=[]
+    csvfile = "test.csv"
+    fin = open(csvfile, "r",encoding="utf-8")
+    reader = csv.reader(fin)
+    for row in reader:
+        data.append(row)
+    fin.close
+    return data
+
 # カルーセルテンプレートメッセージ
 def make_carousel_template():
     carousel_template_message = TemplateSendMessage(
@@ -180,16 +191,8 @@ def make_carousel_template():
     )
     return carousel_template_message
 
-#テンプレートの中身を作る
-def make_template_data():
-    data=[]
-    csvfile = "test.csv"
-    fin = open(csvfile, "r",encoding="utf-8")
-    reader = csv.reader(fin)
-    for row in reader:
-        data.append(row)
-    fin.close
-    return data
+
+
 
 # メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=TextMessage)
