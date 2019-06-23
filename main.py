@@ -83,12 +83,12 @@ def read_data():
     for row in reader:
         data.append(row)
     fin.close
-    return data,row
+    return data
 
 # カルーセルテンプレートメッセージ
 #配列[列][行]
 def make_carousel_template():
-    data,row = read_data()
+    data = read_data()
     carousel_template_message = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
@@ -218,12 +218,12 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
-        data,row = read_data()
-        for i in range(row):
+        data = read_data()
+        for i in range(950):
             if data[i][8] in event.message.text:
                 content = data[i][12]
                 break
-                
+
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
