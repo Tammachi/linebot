@@ -195,12 +195,14 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
-        file_path = 'test.csv'
-        with open(file_path , 'rt') as fin:
-            cin = csv.reader(fin)
-            place_list = [row for row in cin]
-
-        content = place_list[1]
+        data=[]
+        csvfile = "test.csv"
+        fin = open(csvfile, "r",encoding="utf-8")
+        reader = csv.reader(fin)
+        for row in reader:
+            data.append(x)
+        f.close
+        content = data[1]
 
     line_bot_api.reply_message(
         event.reply_token,
