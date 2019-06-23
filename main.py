@@ -218,9 +218,10 @@ def handle_message(event):
     else:
         data = read_data()
         for i in range(950):
-            if data[i][8] in event.message.text:
+            if event.message.text in data[i][8]:
                 content = data[i][12]
                 break
+
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
