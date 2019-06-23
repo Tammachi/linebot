@@ -15,7 +15,6 @@
 import os
 import sys
 import csv
-import numpy as np
 
 from argparse import ArgumentParser
 
@@ -35,7 +34,6 @@ route_search_longitude =999
 route_search_latitude =999
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
-data = []
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
