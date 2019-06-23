@@ -84,6 +84,7 @@ def read_data():
     return data
 
 # カルーセルテンプレートメッセージ
+#配列[列][行]
 def make_carousel_template():
     data = read_data()
     carousel_template_message = TemplateSendMessage(
@@ -92,8 +93,8 @@ def make_carousel_template():
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=data[4][1],
-                    text=data[5][1],
+                    title=data[1][7],
+                    text=data[1][11],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
