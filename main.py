@@ -29,9 +29,6 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, LocationMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn, URIAction, MessageAction, PostbackAction
 )
 
-# グローバル変数の宣言
-route_search_longitude =999
-route_search_latitude =999
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
 app = Flask(__name__)
@@ -208,8 +205,6 @@ def make_carousel_template():
 # メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    global route_search_latitude
-    global route_search_longitude
     if (event.message.text[-1] = "g" :
         content = make_guide_url(event.message.latitude,event.message.longitude,event.message.text)
     else:
