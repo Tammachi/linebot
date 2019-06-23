@@ -200,7 +200,7 @@ def handle_message(event):
         fin = open(csvfile, "r",encoding="utf-8")
         reader = csv.reader(fin)
         for row in reader:
-            data.append(x)
+            data.append(row)
         f.close
         content = data[1]
 
