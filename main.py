@@ -71,6 +71,12 @@ def callback():
 def spot_data():
     data = read_data()
 
+#案内のurlをつくる
+def make_guide_url(route_search_latitude,route_search_longitude,placename):
+    google_map_url = 'http://maps.google.com/maps?'
+    google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)
+    google_map_url += "daddr={}".format(placename)
+    return google_map_url
 
 #テンプレートの中身を作る
 def read_data():
@@ -98,7 +104,7 @@ def make_carousel_template():
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[1][3],
+                            text=data[1][3] + "g",
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
@@ -204,17 +210,8 @@ def make_carousel_template():
 def handle_message(event):
     global route_search_latitude
     global route_search_longitude
-    if '近くの観光情報を教えて' in event.message.text:
-        content = 'わかりました！位置情報を送ってください！'
-        route_search_latitude=999
-        route_search_longitude=999
-    elif route_search_latitude != 999 and route_search_longitude != 999:
-        google_map_url = 'http://maps.google.com/maps?'
-        google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)
-        google_map_url += "daddr={}".format(event.message.text)
-        content = google_map_url
-        route_search_latitude=999
-        route_search_longitude=999
+    if (event.message.text[-1] = "g" :
+        content = make_guide_url(event.message.latitude,event.message.longitude,event.message.text)
     else:
         data = read_data()
         for i in range(651):
@@ -231,10 +228,7 @@ def handle_message(event):
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_image_message(event):
     messages = make_carousel_template()
-    global route_search_latitude
-    global route_search_longitude
-    route_search_latitude=event.message.latitude
-    route_search_longitude=event.message.longitude
+
     line_bot_api.reply_message(
         event.reply_token,
         [
