@@ -187,13 +187,6 @@ def handle_message(event):
         content = 'わかりました！位置情報を送ってください！'
         route_search_latitude=999
         route_search_longitude=999
-    elif route_search_latitude != 999 and route_search_longitude != 999:
-        google_map_url = 'http://maps.google.com/maps?'
-        google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)
-        google_map_url += "daddr={}".format(event.message.text)
-        content = google_map_url
-        route_search_latitude=999
-        route_search_longitude=999
     else:
         data=[]
         csvfile = "test.csv"
@@ -203,6 +196,15 @@ def handle_message(event):
             data.append(row)
         f.close
         content = data
+        
+    elif route_search_latitude != 999 and route_search_longitude != 999:
+        google_map_url = 'http://maps.google.com/maps?'
+        google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)
+        google_map_url += "daddr={}".format(event.message.text)
+        content = google_map_url
+        route_search_latitude=999
+        route_search_longitude=999
+
 
     line_bot_api.reply_message(
         event.reply_token,
