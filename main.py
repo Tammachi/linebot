@@ -72,6 +72,7 @@ def callback():
 def spot_data():
     data = read_data()
 
+
 #テンプレートの中身を作る
 def read_data():
     data=[]
@@ -93,7 +94,7 @@ def make_carousel_template():
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=data[1][8],
+                    title=data[1][12],
                     text=data[1][9],
                     actions=[
                         PostbackAction(
