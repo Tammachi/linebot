@@ -202,7 +202,7 @@ def handle_message(event):
         for row in reader:
             data.append(row)
         f.close
-        content = data[1]
+        content = data
 
     line_bot_api.reply_message(
         event.reply_token,
