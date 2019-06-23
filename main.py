@@ -68,10 +68,14 @@ def callback():
 
     return 'OK'
 
+#言葉から、areaを探す。
+def spot_data():
+    data = read_data()
+
 #テンプレートの中身を作る
-def make_template_data():
+def read_data():
     data=[]
-    csvfile = "test.csv"
+    csvfile = "DSIGHt.csv"
     fin = open(csvfile, "r",encoding="utf-8")
     reader = csv.reader(fin)
     for row in reader:
@@ -81,14 +85,14 @@ def make_template_data():
 
 # カルーセルテンプレートメッセージ
 def make_carousel_template():
-    data = make_template_data()
+    data = read_data()
     carousel_template_message = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=data[1][0],
+                    title=data[3][1],
                     text=data[1][1],
                     actions=[
                         PostbackAction(
