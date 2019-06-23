@@ -34,7 +34,7 @@ route_search_longitude =999
 route_search_latitude =999
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
-
+data = []
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
@@ -71,12 +71,13 @@ def callback():
 # カルーセルテンプレートメッセージ
 def make_carousel_template():
     carousel_template_message = TemplateSendMessage(
+        data = make_template_data()
         alt_text='Carousel template',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=place[0],
+                    title=data[1][1],
                     text=detail[0],
                     actions=[
                         PostbackAction(
@@ -179,6 +180,17 @@ def make_carousel_template():
     )
     return carousel_template_message
 
+#テンプレートの中身を作る
+def make_template_data():
+    data=[]
+    csvfile = "test.csv"
+    fin = open(csvfile, "r",encoding="utf-8")
+    reader = csv.reader(fin)
+    for row in reader:
+        data.append(row)
+    fin.close
+    return data
+
 # メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -196,14 +208,7 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
-        data=[]
-        csvfile = "test.csv"
-        fin = open(csvfile, "r",encoding="utf-8")
-        reader = csv.reader(fin)
-        for row in reader:
-            data.append(row)
-        fin.close
-        content = data[1][1]
+
 
     line_bot_api.reply_message(
         event.reply_token,
