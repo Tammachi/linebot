@@ -93,12 +93,12 @@ def make_carousel_template():
             columns=[
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=data[1][8],
-                    text=data[1][9],
+                    title=data[1][3],
+                    text=data[1][4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[1][8],
+                            text=data[1][3],
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
@@ -218,8 +218,8 @@ def handle_message(event):
     else:
         data = read_data()
         for i in range(650):
-            if event.message.text in data[i][8]:
-                content = data[i][8] + ":" + "\n" + data[i][12]
+            if event.message.text in data[i][3]:
+                content = data[i][3] + ":" + "\n" + data[i][4]
                 break
 
     line_bot_api.reply_message(
