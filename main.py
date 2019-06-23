@@ -15,7 +15,7 @@
 import os
 import sys
 import csv
-#import numpy as np
+import numpy as np
 
 from argparse import ArgumentParser
 
@@ -35,6 +35,7 @@ route_search_longitude =999
 route_search_latitude =999
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
+data = []
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
@@ -69,7 +70,7 @@ def callback():
     return 'OK'
 
 #言葉から、areaを探す。
-def search_spot():
+def spot_data():
     data = read_data()
 
 
@@ -217,11 +218,8 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
-        #data = read_data()
-        #for i in range(950):
-            #if data[i][8] in event.message.text:
-                #content = data[i][12]
-                #break
+        data = read_data()
+            content = data[1][12]
 
     line_bot_api.reply_message(
         event.reply_token,
