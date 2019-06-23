@@ -81,8 +81,8 @@ def make_template_data():
 
 # カルーセルテンプレートメッセージ
 def make_carousel_template():
+    data = make_template_data()
     carousel_template_message = TemplateSendMessage(
-        data = make_template_data()
         alt_text='Carousel template',
         template=CarouselTemplate(
             columns=[
