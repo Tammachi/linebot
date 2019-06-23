@@ -217,8 +217,10 @@ def handle_message(event):
         route_search_longitude=999
     else:
         data = read_data()
-        content = data[1][12]
-
+        for i in range(950):
+            if data[i][8] in event.message.text:
+                content = data[i][12]
+                break
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
