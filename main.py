@@ -201,7 +201,7 @@ def make_carousel_template():
 
 
 
-# メッセージイベントの場合の処理・numpy
+# メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     global route_search_latitude
@@ -219,7 +219,7 @@ def handle_message(event):
         route_search_longitude=999
     else:
         data = read_data()
-            content = data[1][12]
+        content = data[1][12]
 
     line_bot_api.reply_message(
         event.reply_token,
