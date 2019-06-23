@@ -84,7 +84,7 @@ def read_data():
     return data
 
 # カルーセルテンプレートメッセージ
-#配列[列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要)][行]
+#配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...)]
 def make_carousel_template():
     data = read_data()
     carousel_template_message = TemplateSendMessage(
@@ -217,7 +217,7 @@ def handle_message(event):
         route_search_longitude=999
     else:
         data = read_data()
-        for i in range(650):
+        for i in range(651):
             if event.message.text in data[i][3]:
                 content = data[i][3] + ":" + "\n" + data[i][7]
                 break
