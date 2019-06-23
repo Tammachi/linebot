@@ -89,7 +89,7 @@ def make_carousel_template():
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
                     title=data[1][0],
-                    text=detail[0],
+                    text=data[1][1],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
@@ -108,8 +108,8 @@ def make_carousel_template():
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
-                    title=place[1],
-                    text=detail[1],
+                    title=data[2][0],
+                    text=data[2][1],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
