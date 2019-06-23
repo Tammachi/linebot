@@ -218,7 +218,8 @@ def handle_message(event):
         route_search_latitude=999
         route_search_longitude=999
     else:
-        data = np.read_data()
+        data = read_data()
+        data = np.data
             content = data[1][12]
 
     line_bot_api.reply_message(
