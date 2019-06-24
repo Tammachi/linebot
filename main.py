@@ -97,7 +97,7 @@ def read_data():
 def make_carousel_template():
     data = read_data()
     carousel_template_message = TemplateSendMessage(
-        alt_text='Carousel template',
+        alt_text='近場のスポットはこんな感じです',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
@@ -107,7 +107,7 @@ def make_carousel_template():
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[1][3]　+ 'に行きたい',
+                            text=data[1][3],
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
