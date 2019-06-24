@@ -101,7 +101,7 @@ def make_carousel_template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url=https://ja.kyoto.travel/resource/tourism/sight/photo/mimon01C/C069.jpg #data[1][23],　#画像データは入ってるけどなんか上手くいかないサイズかな？
+                    thumbnail_image_url='https://ja.kyoto.travel/resource/tourism/sight/photo/mimon01C/C069.jpg' #data[1][23],　#画像データは入ってるけどなんか上手くいかないサイズかな？
                     title=data[1][3],
                     text=data[1][4],
                     actions=[
