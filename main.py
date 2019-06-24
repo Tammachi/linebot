@@ -101,13 +101,13 @@ def make_carousel_template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    thumbnail_image_url=data[1][23],
                     title=data[1][3],
                     text=data[1][4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[1][3],
+                            text=data[1][3]　+ 'に行きたい',
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
@@ -219,11 +219,11 @@ def handle_message(event):
     if '近くの観光情報を教えて' in event.message.text:
         content = 'わかりました！位置情報を送ってください！'
         address=999
-    elif address != 999 and 'に行きたい！' in event.message.text:
+    elif address != 999 and 'に行きたい' in event.message.text:
         destination = event.message.text
         google_map_url = 'http://maps.google.com/maps?'
         google_map_url += "saddr={}&".format(address)
-        google_map_url += "daddr={}".format(destination.rstrip('に行きたい！'))
+        google_map_url += "daddr={}".format(destination.rstrip('に行きたい'))
         content = google_map_url
         address=999
     elif 'について教えて！' in event.message.text:
