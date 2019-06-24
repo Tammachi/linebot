@@ -33,7 +33,7 @@ from linebot.models import (
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
 
-# グローバル変数の宣言
+# グローバル変数の宣言(最終的には使わないようにしたい)
 address=999
 
 app = Flask(__name__)
@@ -93,7 +93,7 @@ def read_data():
     return data
 
 # カルーセルテンプレートメッセージ
-#配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...)]
+#配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...23:画像url)]
 def make_carousel_template():
     data = read_data()
     carousel_template_message = TemplateSendMessage(
@@ -101,7 +101,7 @@ def make_carousel_template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url=data[1][23],
+                    thumbnail_image_url=https://ja.kyoto.travel/resource/tourism/sight/photo/mimon01C/C069.jpg #data[1][23],　#画像データは入ってるけどなんか上手くいかないサイズかな？
                     title=data[1][3],
                     text=data[1][4],
                     actions=[
