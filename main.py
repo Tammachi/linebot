@@ -29,8 +29,13 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, LocationMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn, URIAction, MessageAction, PostbackAction
 )
 
+#とりあえず表示するため、きにしないで
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
+
+# グローバル変数の宣言
+address=999
+
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
@@ -64,18 +69,19 @@ def callback():
 
     return 'OK'
 
-#言葉から、areaを探す。
+#言葉から、areaを探す。（未完）
 def spot_data():
     data = read_data()
 
-#案内のurlをつくる
+#案内のurlをつくる（理想、未完）
 def make_guide_url(route_search_latitude,route_search_longitude,placename):
     google_map_url = 'http://maps.google.com/maps?'
     google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)
     google_map_url += "daddr={}".format(placename)
     return google_map_url
 
-#テンプレートの中身を作る
+#データを読み込み返す。
+#今は全部データを読み込んでいるけど、最終的には、NumPy？やらpandasなどを使って、もうちょっと効率よくやろう。
 def read_data():
     data=[]
     csvfile = "DSIGHT.csv"
@@ -202,11 +208,28 @@ def make_carousel_template():
 
 
 
-# メッセージイベントの場合の処理
+# テキストメッセージイベントの場合の処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if (event.message.text[-1] = "g" :
-        content = make_guide_url(event.message.latitude,event.message.longitude,event.message.text)
+    #if (event.message.text[-1] = "g" :（理想、とりあえずきにしないで）
+    #    content = make_guide_url(event.message.latitude,event.message.longitude,event.message.text)
+    profile = line_bot_api.get_profile(event.source.user_id)
+    name = profile.display_name
+    global address
+    if '近くの観光情報を教えて' in event.message.text:
+        content = 'わかりました！位置情報を送ってください！'
+        address=999
+    elif address != 999 and 'に行きたい！' in event.message.text:
+        destination = event.message.text
+        google_map_url = 'http://maps.google.com/maps?'
+        google_map_url += "saddr={}&".format(address)
+        google_map_url += "daddr={}".format(destination.rstrip('に行きたい！'))
+        content = google_map_url
+        address=999
+    elif 'について教えて！' in event.message.text:
+        description = event.message.text
+        description = description.rstrip('について教えて！')
+        content = description
     else:
         data = read_data()
         for i in range(651):
@@ -223,7 +246,8 @@ def handle_message(event):
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_image_message(event):
     messages = make_carousel_template()
-
+    global address
+    address=event.message.address[13:]
     line_bot_api.reply_message(
         event.reply_token,
         [
