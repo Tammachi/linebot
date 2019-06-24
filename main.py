@@ -101,7 +101,7 @@ def make_carousel_template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg', #data[1][23],　#画像urlは入ってるけどなんか上手くいかない。直接urlを張っても動かないからサイズかな？
+                    thumbnail_image_url='https://ja.kyoto.travel/resource/tourism/sight/photo/mimon01C/C069.jpg', #data[1][23],　#画像urlは入ってるけどなんか上手くいかない。直接urlを張っても動かないからサイズかな？
                     title=data[1][3],
                     text=data[1][4],
                     actions=[
