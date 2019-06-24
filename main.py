@@ -93,7 +93,7 @@ def read_data():
     return data
 
 # カルーセルテンプレートメッセージ
-#配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...23:画像url)]
+#配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...23:画像urlたぶん)]
 def make_carousel_template():
     data = read_data()
     carousel_template_message = TemplateSendMessage(
@@ -101,13 +101,13 @@ def make_carousel_template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url=data[1][23], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
+                    thumbnail_image_url='https://ja.kyoto.travel/resource/tourism/sight/photo/mimon01C/C069.jpg', #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
                     title=data[1][3],
                     text=data[1][4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[1][3],
+                            text=data[1][3]+'に行きたい',
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
