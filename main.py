@@ -101,7 +101,7 @@ def make_carousel_template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    thumbnail_image_url=data[1][23],
                     title=data[1][3],
                     text=data[1][4],
                     actions=[
