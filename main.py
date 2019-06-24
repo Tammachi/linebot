@@ -107,7 +107,7 @@ def make_carousel_template():
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[1][3] + "g",
+                            text=data[1][3],
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
