@@ -114,10 +114,10 @@ def make_carousel_template():
                             label='詳しく見る。',
                             text='open1'
                         ),
-                        URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
-                        )
+                        #URIAction(
+                        #    label='uri1',
+                        #    uri='http://example.com/1'
+                        #)
                     ]
                 ),
                 CarouselColumn(
