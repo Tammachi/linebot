@@ -95,7 +95,7 @@ def read_data():
 
 def rundum_num():
     num = []
-    for j in range(6):
+    for j in range(5):
         x = random.randrange(1, 650)
         num.append(x)
     return num
@@ -131,82 +131,82 @@ def make_carousel_template():
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[2]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[2]][3],
-                    text=data[num[2]][4],
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    title=data[4][3],
+                    text=data[4][4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[2]][3]+'に行きたい',#合わせて変えたヨ
-                            data='action=buy&itemid=1'
+                            text=place[1],
+                            data='action=buy&itemid=2'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[2]][3]
+                            text='open2'
                         ),
                         URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
+                            label='uri2',
+                            uri='http://example.com/2'
                         )
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[3]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[3]][3],
-                    text=data[num[3]][4],
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    title=place[2],
+                    text=detail[2],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[3]][3]+'に行きたい',#合わせて変えたヨ
-                            data='action=buy&itemid=1'
+                            text=place[2],
+                            data='action=buy&itemid=3'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[3]][3]
+                            text='open3'
                         ),
                         URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
+                            label='uri3',
+                            uri='http://example.com/3'
                         )
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[4]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[4]][3],
-                    text=data[num[4]][4],
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    title=place[3],
+                    text=detail[3],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[4]][3]+'に行きたい',#合わせて変えたヨ
+                            text=place[3],
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[4]][3]
+                            text='open3'
                         ),
                         URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
+                            label='uri3',
+                            uri='http://example.com/3'
                         )
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[5]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[5]][3],
-                    text=data[num[5]][4],
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/d/d3/Kinkaku-ji_2015.JPG',
+                    title=place[4],
+                    text=detail[4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[5]][3]+'に行きたい',#合わせて変えたヨ
-                            data='action=buy&itemid=1'
+                            text=place[4],
+                            data='action=buy&itemid=2'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[5]][3]
+                            text='open2'
                         ),
                         URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
+                            label='uri2',
+                            uri='http://example.com/2'
                         )
                     ]
                 )
