@@ -131,7 +131,7 @@ def make_carousel_template():
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    thumbnail_image_url='https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiQo5zR7objAhWKabwKHWz_CsQQjRx6BAgBEAU&url=https%3A%2F%2Fitem.rakuten.co.jp%2Fhtcgolf%2Foppai-cake%2F&psig=AOvVaw03WMCjWJzOjIXcYPfpkVss&ust=1561628760690651',
                     title=data[4][3],
                     text=data[4][4],
                     actions=[
