@@ -95,7 +95,7 @@ def read_data():
 def rundum_num():
     num = []
     for j in range(5):
-        x = random.randint(1,650)
+        x = random.randrange(1, 650)
         num.append(x)
     return num
 
@@ -243,9 +243,7 @@ def handle_message(event):
         data = read_data()
         for i in range(651):
             if event.message.text in data[i][3]:
-                #content = data[i][3] + ":" + "\n" + data[i][7]
-                num = rundum_num
-                content = num[1]
+                content = data[i][3] + ":" + "\n" + data[i][7]
                 break
 
     line_bot_api.reply_message(
