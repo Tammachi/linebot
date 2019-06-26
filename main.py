@@ -15,7 +15,6 @@
 import os
 import sys
 import csv
-import numpy as np
 
 from argparse import ArgumentParser
 
