@@ -101,18 +101,18 @@ def make_carousel_template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://ja.kyoto.travel/resource/tourism/sight/photo/mimon01C/C069.jpg', #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
+                    thumbnail_image_url=data[1][24],　#画像urlは入ってるけどなんか上手くいかない.
                     title=data[1][3],
                     text=data[1][4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[1][3]+'に行きたい',
+                            text=data[1][3]+'に行きたい',#合わせて変えたヨ
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text='open1'
+                            text=data[1][3]
                         ),
                         URIAction(
                             label='uri1',
@@ -219,7 +219,7 @@ def handle_message(event):
     if '近くの観光情報を教えて' in event.message.text:
         content = 'わかりました！位置情報を送ってください！'
         address=999
-    elif address != 999 and 'に行きたい' in event.message.text:
+    elif address != 999 or 'に行きたい' in event.message.text:
         destination = event.message.text
         google_map_url = 'http://maps.google.com/maps?'
         google_map_url += "saddr={}&".format(address)
