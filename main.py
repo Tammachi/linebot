@@ -101,7 +101,7 @@ def make_carousel_template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url=data[1][24],　#画像urlは入ってるけどなんか上手くいかない.
+                    thumbnail_image_url=data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
                     title=data[1][3],
                     text=data[1][4],
                     actions=[
@@ -112,7 +112,7 @@ def make_carousel_template():
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[1][3]
+                            text='open1'
                         ),
                         URIAction(
                             label='uri1',
