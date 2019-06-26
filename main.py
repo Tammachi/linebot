@@ -219,7 +219,7 @@ def handle_message(event):
     if '近くの観光情報を教えて' in event.message.text:
         content = 'わかりました！位置情報を送ってください！'
         address=999
-    elif address != 999 or 'に行きたい' in event.message.text:
+    elif address != 999 and 'に行きたい' in event.message.text:
         destination = event.message.text
         google_map_url = 'http://maps.google.com/maps?'
         google_map_url += "saddr={}&".format(address)
