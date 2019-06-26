@@ -112,7 +112,7 @@ def make_carousel_template():
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[1][3]
+                            text=data[1][3],
                         ),
                         URIAction(
                             label='uri1',
