@@ -131,7 +131,7 @@ def make_carousel_template():
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[2][24],
+                    thumbnail_image_url=data[num[2]][24],
                     title=data[4][3],
                     text=data[4][4],
                     actions=[
