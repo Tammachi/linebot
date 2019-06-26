@@ -15,6 +15,7 @@
 import os
 import sys
 import csv
+import numpy as np
 
 from argparse import ArgumentParser
 
@@ -92,28 +93,36 @@ def read_data():
     fin.close
     return data
 
+def rundum_num():
+    num = []
+    for j in range(5):
+        x = random.randint(1,650)
+        num.append(x)
+    return num
+
 # カルーセルテンプレートメッセージ
 #配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...23:画像urlたぶん)]
 #カルーセルテンプレートの段階で、URIActionに地図を乗っけちゃう
 def make_carousel_template():
     data = read_data()
+    num = rundum_num()
     carousel_template_message = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url=data[1][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[1][3],
-                    text=data[1][4],
+                    thumbnail_image_url=data[num[1]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
+                    title=data[num[1]][3],
+                    text=data[num[1]][4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[1][3]+'に行きたい',#合わせて変えたヨ
+                            text=data[num[1]][3]+'に行きたい',#合わせて変えたヨ
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[1][3]
+                            text=data[num[1]][3]
                         ),
                         URIAction(
                             label='uri1',
