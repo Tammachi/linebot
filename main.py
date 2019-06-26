@@ -95,7 +95,7 @@ def read_data():
 
 def rundum_num():
     num = []
-    for j in range(5):
+    for j in range(6):
         x = random.randrange(1, 650)
         num.append(x)
     return num
