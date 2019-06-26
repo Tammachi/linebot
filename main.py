@@ -94,6 +94,7 @@ def read_data():
 
 # カルーセルテンプレートメッセージ
 #配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...23:画像urlたぶん)]
+#カルーセルテンプレートの段階で、URIActionに地図を乗っけちゃう
 def make_carousel_template():
     data = read_data()
     carousel_template_message = TemplateSendMessage(
@@ -112,12 +113,12 @@ def make_carousel_template():
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text='open1'
+                            text=data[1][3]
                         ),
-                        #URIAction(
-                        #    label='uri1',
-                        #    uri='http://example.com/1'
-                        #)
+                        URIAction(
+                            label='uri1',
+                            uri='http://example.com/1'
+                        )
                     ]
                 ),
                 CarouselColumn(
