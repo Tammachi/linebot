@@ -131,7 +131,7 @@ def make_carousel_template():
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url='https://59cd2a128650a97966673f22a9acf39d.cdnext.stream.ne.jp/img/profile/40000114.jpg',
+                    thumbnail_image_url=data[num[2][24],
                     title=data[4][3],
                     text=data[4][4],
                     actions=[
