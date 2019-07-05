@@ -229,8 +229,8 @@ def make_carousel_template(address):
 def handle_message(event):
     #if (event.message.text[-1] = "g" :（理想、とりあえずきにしないで）
     #    content = make_guide_url(event.message.latitude,event.message.longitude,event.message.text)
-    profile = line_bot_api.get_profile(event.source.user_id)
-    name = profile.display_name
+    #profile = line_bot_api.get_profile(event.source.user_id)
+    #name = profile.display_name
     global address
     if '近くの観光情報を教えて' in event.message.text:
         content = 'わかりました！位置情報を送ってください！'
