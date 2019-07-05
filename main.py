@@ -132,7 +132,7 @@ def make_carousel_template(address):
                         ),
                         URIAction(
                             label='uri1',
-                            uri='http://example.com/1'
+                            uri=URL[1]
                         )
                     ]
                 ),
