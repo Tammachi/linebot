@@ -103,7 +103,7 @@ def rundum_num():
 # カルーセルテンプレートメッセージ
 #配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...24:画像urlたぶん)]
 #カルーセルテンプレートの段階で、URIActionに地図を乗っけちゃう
-def make_carousel_template(address,goal):
+def make_carousel_template(address):
     data = read_data()
     num = rundum_num()
     URL = []
@@ -261,9 +261,9 @@ def handle_message(event):
 # 位置情報メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_image_message(event):
-    messages = make_carousel_template()
     global address
     address=event.message.address[13:]
+    messages = make_carousel_template(address)
     line_bot_api.reply_message(
         event.reply_token,
         [
