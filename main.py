@@ -261,9 +261,9 @@ def handle_message(event):
 # 位置情報メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_image_message(event):
+    address=event.message.address[13:]
     messages = make_carousel_template(address)
     global address
-    address=event.message.address[13:]
     line_bot_api.reply_message(
         event.reply_token,
         [
