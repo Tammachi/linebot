@@ -108,7 +108,7 @@ def make_carousel_template(address):
     num = rundum_num()
     URL = []
     for i in range(5):
-        goal = str(data[num[i+1]][3])
+        goal = str(data[num[i]][3])
         goal = goal.replace("　","")
         x = create_google_map_url(address,goal)
         URL.append(x)
@@ -235,13 +235,13 @@ def handle_message(event):
     if '近くの観光情報を教えて' in event.message.text:
         content = 'わかりました！位置情報を送ってください！'
         address=999
-    elif address != 999 and 'に行きたい' in event.message.text:
-        destination = event.message.text
-        google_map_url = 'http://maps.google.com/maps?'
-        google_map_url += "saddr={}&".format(address)
-        google_map_url += "daddr={}".format(destination.rstrip('に行きたい'))
-        content = google_map_url
-        address=999
+    #elif address != 999 and 'に行きたい' in event.message.text:
+        #destination = event.message.text
+        #google_map_url = 'http://maps.google.com/maps?'
+        #google_map_url += "saddr={}&".format(address)
+        #google_map_url += "daddr={}".format(destination.rstrip('に行きたい'))
+        #content = google_map_url
+        #address=999
     elif 'について教えて！' in event.message.text:
         description = event.message.text
         description = description.rstrip('について教えて！')
