@@ -110,8 +110,8 @@ def make_carousel_template(address):
     for i in range(6):
         goal = str(data[num[i]][3])
         goal = goal.replace("　","")
-        URL.append(create_google_map_url(address,goal))
-
+        x = create_google_map_url(address,goal)
+        URL.append(x)
     carousel_template_message = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
