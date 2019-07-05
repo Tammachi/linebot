@@ -131,7 +131,7 @@ def make_carousel_template(address):
                             text=data[num[1]][3]
                         ),
                         URIAction(
-                            label='uri1',
+                            label='ここに行く！直接URL',
                             uri=URL[1]
                         )
                     ]
@@ -152,7 +152,7 @@ def make_carousel_template(address):
                         ),
                         URIAction(
                             label='ここに行く！直接URL',
-                            uri=URL[1]
+                            uri=URL[2]
                         )
                     ]
                 ),
@@ -171,8 +171,8 @@ def make_carousel_template(address):
                             text=data[num[3]][3]
                         ),
                         URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
+                            label='ここに行く！直接URL',
+                            uri=URL[3]
                         )
                     ]
                 ),
@@ -191,8 +191,8 @@ def make_carousel_template(address):
                             text=data[num[4]][3]
                         ),
                         URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
+                            label='ここに行く！直接URL',
+                            uri=URL[4]
                         )
                     ]
                 ),
@@ -211,8 +211,8 @@ def make_carousel_template(address):
                             text=data[num[5]][3]
                         ),
                         URIAction(
-                            label='uri1',
-                            uri='http://example.com/1'
+                            label='ここに行く！直接URL',
+                            uri=URL[5]
                         )
                     ]
                 )
