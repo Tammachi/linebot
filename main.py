@@ -107,7 +107,7 @@ def make_carousel_template(address):
     data = read_data()
     num = rundum_num()
     URL = []
-    for i in range(6):
+    for i in range(5):
         goal = str(data[num[i]][3])
         goal = goal.replace("　","")
         URL.append(create_google_map_url(address,goal))
@@ -131,7 +131,7 @@ def make_carousel_template(address):
                             text=data[num[1]][3]
                         ),
                         URIAction(
-                            label='ここに行く！(直接)',
+                            label='uri1',
                             uri=URL[1]
                         )
                     ]
@@ -151,8 +151,8 @@ def make_carousel_template(address):
                             text=data[num[2]][3]
                         ),
                         URIAction(
-                            label='ここに行く！(直接)',
-                            uri=URL[2]
+                            label='uri1',
+                            uri=URL[1]
                         )
                     ]
                 ),
@@ -171,8 +171,8 @@ def make_carousel_template(address):
                             text=data[num[3]][3]
                         ),
                         URIAction(
-                            label='ここに行く！(直接)',
-                            uri=URL[3]
+                            label='uri1',
+                            uri='http://example.com/1'
                         )
                     ]
                 ),
@@ -191,8 +191,8 @@ def make_carousel_template(address):
                             text=data[num[4]][3]
                         ),
                         URIAction(
-                            label='ここに行く！(直接)',
-                            uri=URL[4]
+                            label='uri1',
+                            uri='http://example.com/1'
                         )
                     ]
                 ),
@@ -211,8 +211,8 @@ def make_carousel_template(address):
                             text=data[num[5]][3]
                         ),
                         URIAction(
-                            label='ここに行く！(直接)',
-                            uri=URL[5]
+                            label='uri1',
+                            uri='http://example.com/1'
                         )
                     ]
                 )
