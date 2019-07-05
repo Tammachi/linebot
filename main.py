@@ -75,10 +75,10 @@ def spot_data():
     data = read_data()
 
 #案内のurlをつくる（理想、未完）
-def make_guide_url(route_search_latitude,route_search_longitude,placename):
+#google_mapのURL作成
+def create_google_map_url(address,goal):
     google_map_url = 'http://maps.google.com/maps?'
-    google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)
-    google_map_url += "daddr={}".format(placename)
+    google_map_url += "saddr={}&daddr={}".format(address,goal)
     return google_map_url
 
 #データを読み込み返す。
@@ -101,11 +101,17 @@ def rundum_num():
     return num
 
 # カルーセルテンプレートメッセージ
-#配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...23:画像urlたぶん)]
+#配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...24:画像urlたぶん)]
 #カルーセルテンプレートの段階で、URIActionに地図を乗っけちゃう
-def make_carousel_template():
+def make_carousel_template(address,goal):
     data = read_data()
     num = rundum_num()
+    URL = []
+    for i in range(5):
+        goal = str(data[num[i]][3])
+        goal = goal.replace("　","")
+        URL.append(create_google_map_url(address,goal))
+
     carousel_template_message = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
@@ -126,7 +132,7 @@ def make_carousel_template():
                         ),
                         URIAction(
                             label='uri1',
-                            uri='http://example.com/1'
+                            uri=URL[1]
                         )
                     ]
                 ),
@@ -146,7 +152,7 @@ def make_carousel_template():
                         ),
                         URIAction(
                             label='uri1',
-                            uri='http://example.com/1'
+                            uri=URL[2]
                         )
                     ]
                 ),
@@ -166,7 +172,7 @@ def make_carousel_template():
                         ),
                         URIAction(
                             label='uri1',
-                            uri='http://example.com/1'
+                            uri=URL[3]
                         )
                     ]
                 ),
@@ -186,7 +192,7 @@ def make_carousel_template():
                         ),
                         URIAction(
                             label='uri1',
-                            uri='http://example.com/1'
+                            uri=URL[4]
                         )
                     ]
                 ),
@@ -206,7 +212,7 @@ def make_carousel_template():
                         ),
                         URIAction(
                             label='uri1',
-                            uri='http://example.com/1'
+                            uri=URL[5]
                         )
                     ]
                 )
