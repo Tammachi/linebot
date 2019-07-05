@@ -151,7 +151,7 @@ def make_carousel_template(address):
                             text=data[num[2]][3]
                         ),
                         URIAction(
-                            label='ここに行く！(直接)',
+                            label='ここに行く！直接URL',
                             uri=URL[1]
                         )
                     ]
