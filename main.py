@@ -15,10 +15,6 @@
 import os
 import sys
 import csv
-import random
-﻿from pygeocoder import Geocoder
-import googlemaps
-
 
 from argparse import ArgumentParser
 
@@ -33,12 +29,12 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, LocationMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn, URIAction, MessageAction, PostbackAction
 )
 
-#とりあえず表示するため、きにしないで
+# グローバル変数の宣言
+route_search_longitude =999
+route_search_latitude =999
+pd_select_address = 1940037
 place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
 detail=['うんち','うんち','うんち','うんち','うんち']
-
-# グローバル変数の宣言(最終的には使わないようにしたい)
-address=999
 
 app = Flask(__name__)
 
@@ -73,149 +69,113 @@ def callback():
 
     return 'OK'
 
-#言葉から、areaを探す。（未完）
-def spot_data():
-    data = read_data()
-
-#案内のurlをつくる（理想、未完）
-#google_mapのURL作成
-def create_google_map_url(address,goal):
-    google_map_url = 'http://maps.google.com/maps?'
-    google_map_url += "saddr={}&daddr={}".format(address,goal)
-    return google_map_url
-
-#データを読み込み返す。
-#今は全部データを読み込んでいるけど、最終的には、NumPy？やらpandasなどを使って、もうちょっと効率よくやろう。
-def read_data():
-    data=[]
-    csvfile = "DSIGHT.csv"
-    fin = open(csvfile, "r",encoding="utf-8")
-    reader = csv.reader(fin)
-    for row in reader:
-        data.append(row)
-    fin.close
-    return data
-
-def rundum_num():
-    num = []
-    for j in range(6):
-        x = random.randrange(1, 650)
-        num.append(x)
-    return num
+#送られてきた位置情報から、近い場所とその情報を選択する
+#def select_place_detail():
+#"SELECT * From 郵便番号簿 WHERE 郵便番号 LIKE ='" & 番号 & "';"
 
 # カルーセルテンプレートメッセージ
-#配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...24:画像urlたぶん)]
-#カルーセルテンプレートの段階で、URIActionに地図を乗っけちゃう
-def make_carousel_template(address):
-    data = read_data()
-    num = rundum_num()
-    URL = []
-    for i in range(6):
-        goal = str(data[num[i]][3])
-        goal = goal.replace("　","")
-        URL.append(create_google_map_url(address,goal))
-
+def make_carousel_template():
     carousel_template_message = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url=data[num[1]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[1]][3],
-                    text=data[num[1]][4],
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    title=place[0],
+                    text=detail[0],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[1]][3]+'に行きたい',#合わせて変えたヨ
+                            text=place[0],
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[1]][3]
+                            text='open1'
                         ),
                         URIAction(
-                            label='ここに行く！直接URL',
-                            uri=URL[1]
+                            label='uri1',
+                            uri='http://example.com/1'
                         )
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[2]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[2]][3],
-                    text=data[num[2]][4],
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    title=place[1],
+                    text=detail[1],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[2]][3]+'に行きたい',#合わせて変えたヨ
-                            data='action=buy&itemid=1'
+                            text=place[1],
+                            data='action=buy&itemid=2'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[2]][3]
+                            text='open2'
                         ),
                         URIAction(
-                            label='ここに行く！直接URL',
-                            uri=URL[2]
+                            label='uri2',
+                            uri='http://example.com/2'
                         )
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[3]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[3]][3],
-                    text=data[num[3]][4],
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    title=place[2],
+                    text=detail[2],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[3]][3]+'に行きたい',#合わせて変えたヨ
-                            data='action=buy&itemid=1'
+                            text=place[2],
+                            data='action=buy&itemid=3'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[3]][3]
+                            text='open3'
                         ),
                         URIAction(
-                            label='ここに行く！直接URL',
-                            uri=URL[3]
+                            label='uri3',
+                            uri='http://example.com/3'
                         )
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[4]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[4]][3],
-                    text=data[num[4]][4],
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/3/35/Kiyomizu_Temple_-_01.jpg',
+                    title=place[3],
+                    text=detail[3],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[4]][3]+'に行きたい',#合わせて変えたヨ
+                            text=place[3],
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[4]][3]
+                            text='open3'
                         ),
                         URIAction(
-                            label='ここに行く！直接URL',
-                            uri=URL[4]
+                            label='uri3',
+                            uri='http://example.com/3'
                         )
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[5]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[5]][3],
-                    text=data[num[5]][4],
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/d/d3/Kinkaku-ji_2015.JPG',
+                    title=place[4],
+                    text=detail[4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[5]][3]+'に行きたい',#合わせて変えたヨ
-                            data='action=buy&itemid=1'
+                            text=place[4],
+                            data='action=buy&itemid=2'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[5]][3]
+                            text='open2'
                         ),
                         URIAction(
-                            label='ここに行く！直接URL',
-                            uri=URL[5]
+                            label='uri2',
+                            uri='http://example.com/2'
                         )
                     ]
                 )
@@ -224,45 +184,29 @@ def make_carousel_template(address):
     )
     return carousel_template_message
 
-
-
-
-# テキストメッセージイベントの場合の処理
+# メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    #if (event.message.text[-1] = "g" :（理想、とりあえずきにしないで）
-    #    content = make_guide_url(event.message.latitude,event.message.longitude,event.message.text)
-    profile = line_bot_api.get_profile(event.source.user_id)
-    name = profile.display_name
-    global address
+    global route_search_latitude
+    global route_search_longitude
     if '近くの観光情報を教えて' in event.message.text:
         content = 'わかりました！位置情報を送ってください！'
-        address=999
-    elif address != 999 and 'に行きたい' in event.message.text:
-        destination = event.message.text
+        route_search_latitude=999
+        route_search_longitude=999
+    elif route_search_latitude != 999 and route_search_longitude != 999:
         google_map_url = 'http://maps.google.com/maps?'
-        google_map_url += "saddr={}&".format(address)
-        google_map_url += "daddr={}".format(destination.rstrip('に行きたい'))
+        google_map_url += "saddr={},{}&".format(route_search_latitude,route_search_longitude)#現在地location
+        google_map_url += "daddr={}".format(event.message.text)#行く先
         content = google_map_url
-        address=999
-    elif 'について教えて！' in event.message.text:
-        description = event.message.text
-        description = description.rstrip('について教えて！')
-        content = description
+        route_search_latitude=999
+        route_search_longitude=999
     else:
-        googleapikey = 'AIzaSyB3wvto0C6bh_L-K0T5YvVInduXzrRGh24'
-        gmaps = googlemaps.Client(key=googleapikey)
-        address = event.message.text
-        result = gmaps.geocode(address)
-        lat = result[0]["geometry"]["location"]["lat"]
-        lon = result[0]["geometry"]["location"]["lng"]
-        content = lat
-        #data = read_data()
-        #for i in range(651):
-        #    if event.message.text in data[i][3]:
-        #        content = data[i][3] + ":" + "\n" + data[i][7]
-        #        break
-
+        file_path='DSIGHT.csv'
+        csvfile = open(file_path, 'r', newline='', encoding='shift_jis')
+        reader = csv.reader(csvfile)
+        header = next(reader)
+        for row in reader
+        content = row[1]
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
@@ -271,9 +215,11 @@ def handle_message(event):
 # 位置情報メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_image_message(event):
-    global address
-    address=event.message.address[13:]
-    messages = make_carousel_template(address)
+    messages = make_carousel_template()
+    global route_search_latitude
+    global route_search_longitude
+    route_search_latitude=event.message.latitude
+    route_search_longitude=event.message.longitude
     line_bot_api.reply_message(
         event.reply_token,
         [
