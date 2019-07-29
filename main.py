@@ -32,10 +32,6 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, LocationMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn, URIAction, MessageAction, PostbackAction
 )
 
-#とりあえず表示するため、きにしないで
-place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
-detail=['うんち','うんち','うんち','うんち','うんち']
-
 # グローバル変数の宣言(最終的には使わないようにしたい)
 address=999
 
@@ -54,15 +50,6 @@ if channel_access_token is None:
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
-#名前から緯度経度をだす
-def make_idokedo():
-    googleapikey=os.environ["GOOGLE_API_KEY"]
-    gmaps = googlemaps.Client(key=googleapikey)
-    address = event.message.text
-    result = gmaps.geocode(address)
-    content = ('緯度 : ' + str(result[0]["geometry"]["location"]["lat"]))
-    content += ('経度　: ' + str(result[0]["geometry"]["location"]["lng"]))
-
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -79,6 +66,24 @@ def callback():
         abort(400)
 
     return 'OK'
+
+#名前から緯度経度をだす
+def make_idokedo():
+    googleapikey=os.environ["GOOGLE_API_KEY"]
+    gmaps = googlemaps.Client(key=googleapikey)
+    address = event.message.text
+    result = gmaps.geocode(address)
+    content = ('緯度 : ' + str(result[0]["geometry"]["location"]["lat"]))
+    content += ('経度　: ' + str(result[0]["geometry"]["location"]["lng"]))
+    return content
+
+#出発地から目的地までの所要時間
+def make_kyori(lat,lng,spot):
+    googleapikey=os.environ["GOOGLE_API_KEY"]
+    gmaps = googlemaps.Client(key=googleapikey)
+    result = gmaps.distance_matrix(origins=spot,destination=(lat,lng),mode='walking')
+    distance = result['rows'][0]['elements'][0]['distance']['value']
+    return distance
 
 #言葉から、areaを探す。（未完）
 def spot_data():
@@ -112,10 +117,13 @@ def rundum_num():
 # カルーセルテンプレートメッセージ
 #配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...24:画像urlたぶん)]
 #カルーセルテンプレートの段階で、URIActionに地図を乗っけちゃう
-def make_carousel_template(address):
+def make_carousel_template(address,lat,lon):
     data = read_data()
     num = rundum_num()
     URL = []
+
+    time = make_kyori(lat,lon,num[i][3])
+
     for i in range(6):
         goal = str(data[num[i]][3])
         goal = goal.replace("　","")
@@ -128,7 +136,7 @@ def make_carousel_template(address):
                 CarouselColumn(
                     thumbnail_image_url=data[num[1]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
                     title=data[num[1]][3],
-                    text=data[num[1]][4],
+                    text=time,
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
@@ -271,7 +279,7 @@ def handle_message(event):
 def handle_image_message(event):
     global address
     address=event.message.address[13:]
-    messages = make_carousel_template(address)
+    messages = make_carousel_template(address,event.message.latitude,event.messsage.longitude)
     line_bot_api.reply_message(
         event.reply_token,
         [
