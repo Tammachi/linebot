@@ -86,7 +86,7 @@ def make_kyori(lat,lng,lat2,lng2):
     distance = result['rows'][0]['elements'][0]['distance']['value']
     #distance += result['rows'][0]['elements'][0]['duration']['value']
     duration = result['rows'][0]['elements'][0]['duration']['value']
-    explanation = str(distance)+"km "+str(duration)+"秒"
+    explanation = str(distance)+"m "+str(duration)+"秒"
     return explanation
 
 #言葉から、areaを探す。（未完）
