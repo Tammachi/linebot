@@ -117,11 +117,11 @@ def rundum_num():
 # カルーセルテンプレートメッセージ
 #配列[行][列(3:名称,4:よみがな,5:通称名称,6:よみがな,7,内容概要...24:画像urlたぶん)]
 #カルーセルテンプレートの段階で、URIActionに地図を乗っけちゃう
-def make_carousel_template(address,lat,lon):
+def make_carousel_template(address,lat,lng):
     data = read_data()
     num = rundum_num()
     URL = []
-    time = make_kyori(lat,lon,num[i][3])
+    time = make_kyori(lat,lng,num[i][3])
 
     for i in range(6):
         goal = str(data[num[i]][3])
@@ -261,7 +261,7 @@ def handle_message(event):
         description = description.rstrip('について教えて！')
         content = description
     else:
-        Sdata = read_data()
+        data = read_data()
         for i in range(651):
           if event.message.text in data[i][3]:
                 content = data[i][3] + ":" + "\n" + data[i][7]
