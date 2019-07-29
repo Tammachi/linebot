@@ -70,21 +70,21 @@ def callback():
     return 'OK'
 
 #名前から緯度経度をだす
-def make_idokedo():
+def make_idokedo(address):
     googleapikey=os.environ["GOOGLE_API_KEY"]
     gmaps = googlemaps.Client(key=googleapikey)
-    address = event.message.text
     result = gmaps.geocode(address)
     content = ('緯度 : ' + str(result[0]["geometry"]["location"]["lat"]))
     content += ('経度　: ' + str(result[0]["geometry"]["location"]["lng"]))
     return content
 
 #出発地から目的地までの所要時間
-def make_kyori(lat,lng,spot):
+def make_kyori(lat,lng,lat2,lng2):
     googleapikey = os.environ["GOOGLE_API_KEY"]
     gmaps = googlemaps.Client(key=googleapikey)
-    result = gmaps.distance_matrix(origins=spot,destination=(lat,lng),mode='walking')
+    result = gmaps.distance_matrix(origins=(lat2,lng2),destination=(lat,lng),mode='walking')
     distance = result['rows'][0]['elements'][0]['distance']['value']
+    distance += result['rows'][0]['elements'][0]['duration']['value']
     return distance
 
 #言葉から、areaを探す。（未完）
@@ -121,7 +121,8 @@ def make_carousel_template(address,lat,lng):
     data = read_data()
     num = rundum_num()
     URL = []
-    time = make_kyori(lat,lng,num[i][3])
+    lat2 , lng2 = make_idokedo(num[i][3])
+    time = make_kyori(lat,lng,lat2,lng2)
 
     for i in range(6):
         goal = str(data[num[i]][3])
