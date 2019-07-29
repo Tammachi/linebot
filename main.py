@@ -82,7 +82,7 @@ def make_idokedo(address):
 def make_kyori(lat,lng,lat2,lng2):
     googleapikey = os.environ["GOOGLE_API_KEY"]
     gmaps = googlemaps.Client(key=googleapikey)
-    result = gmaps.distance_matrix(origins=(lat2,lng2),destination=(lat,lng),mode='walking')
+    result = gmaps.distance_matrix(origins=(lat2,lng2),destinations=(lat,lng),mode='walking')
     distance = result['rows'][0]['elements'][0]['distance']['value']
     distance += result['rows'][0]['elements'][0]['duration']['value']
     return distance
