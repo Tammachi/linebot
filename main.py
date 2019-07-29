@@ -137,7 +137,7 @@ def make_carousel_template(address,lat,lng):
                 CarouselColumn(
                     thumbnail_image_url=data[num[1]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
                     title=data[num[1]][3],
-                    text=explanationexplanation,
+                    text=explanation,
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
