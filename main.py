@@ -16,6 +16,8 @@ import os
 import sys
 import csv
 import random
+from pygeocoder import Geocoder
+import googlemaps
 
 from argparse import ArgumentParser
 
@@ -247,11 +249,19 @@ def handle_message(event):
         description = description.rstrip('について教えて！')
         content = description
     else:
-        data = read_data()
-        for i in range(651):
-           if event.message.text in data[i][3]:
-                content = data[i][3] + ":" + "\n" + data[i][7]
-                break
+        googleapikey = 'AIzaSyB3wvto0C6bh_L-K0T5YvVInduXzrRGh24'
+        gmaps = googlemaps.Client(key=googleapikey)
+        address = event.message.text
+        #result = gmaps.geocode(address,language="ja")
+        result = gmaps.geocode(address)
+        print(result)
+        lat = result[0]["geometry"]["location"]["lat"]
+        content = result[0]["geometry"]["location"]["lng"]
+        #data = read_data()
+        #for i in range(651):
+         #  if event.message.text in data[i][3]:
+        #        content = data[i][3] + ":" + "\n" + data[i][7]
+        #        break
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
