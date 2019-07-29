@@ -16,8 +16,8 @@ import os
 import sys
 import csv
 import random
-from pygeocoder import Geocoder
-import googlemaps
+#from pygeocoder import Geocoder
+#import googlemaps
 
 from argparse import ArgumentParser
 
