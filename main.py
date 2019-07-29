@@ -121,7 +121,8 @@ def make_carousel_template(address,lat,lng):
     data = read_data()
     num = rundum_num()
     URL = []
-    lat2 , lng2 = make_idokedo(num[i][3])
+
+    lat2 , lng2 = make_idokedo([num[1]][3])
     time = make_kyori(lat,lng,lat2,lng2)
 
     for i in range(6):
