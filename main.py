@@ -262,7 +262,7 @@ def handle_message(event):
                 #break
     line_bot_api.reply_message(
         event.reply_token,
-            TextSendMessage(text=content)
+            TextSendMessage(text=str(content))
     )
 
 # 位置情報メッセージイベントの場合の処理
