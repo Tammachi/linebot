@@ -70,10 +70,10 @@ def callback():
     return 'OK'
 
 #名前から緯度経度をだす
-def make_idokedo(address):
+def make_idokedo(spot):
     googleapikey=os.environ["GOOGLE_API_KEY"]
     gmaps = googlemaps.Client(key=googleapikey)
-    result = gmaps.geocode(address)
+    result = gmaps.geocode(spot)
     lat = result[0]["geometry"]["location"]["lat"]
     lng = result[0]["geometry"]["location"]["lng"]
     return lat,lng
@@ -277,7 +277,7 @@ def handle_message(event):
 def handle_image_message(event):
     global address
     address=event.message.address[13:]
-    messages = make_carousel_template(address,event.message.latitude, event.message.longitude)
+    messages = make_carousel_template(address,event.message.latitude,event.message.longitude)
     line_bot_api.reply_message(
         event.reply_token,
         [
