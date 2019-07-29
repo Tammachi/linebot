@@ -124,8 +124,8 @@ def make_carousel_template(address,lat,lng):
 
     lat2 , lng2 = make_idokedo(data[num[1]][3])
     distance , duration = make_kyori(lat,lng,lat2,lng2)
-    explanation = str(distance) + "km " +str(duration) + "分"
-    for i in range(6):
+    explanation = str(distance) + 'km ' + str(duration) + '分'
+    for i in range(6):'
         goal = str(data[num[i]][3])
         goal = goal.replace("　","")
         URL.append(create_google_map_url(address,goal))
