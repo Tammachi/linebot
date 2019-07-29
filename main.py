@@ -16,8 +16,8 @@ import os
 import sys
 import csv
 import random
-#from pygeocoder import Geocoder
-#import googlemaps
+from pygeocoder import Geocoder
+import googlemaps
 
 from argparse import ArgumentParser
 
@@ -121,7 +121,6 @@ def make_carousel_template(address,lat,lon):
     data = read_data()
     num = rundum_num()
     URL = []
-
     time = make_kyori(lat,lon,num[i][3])
 
     for i in range(6):
