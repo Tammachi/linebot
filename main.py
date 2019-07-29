@@ -54,6 +54,14 @@ if channel_access_token is None:
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
+#名前から緯度経度をだす
+def make_idokedo():
+    googleapikey=os.environ["GOOGLE_API_KEY"]
+    gmaps = googlemaps.Client(key=googleapikey)
+    address = event.message.text
+    result = gmaps.geocode(address)
+    content = ('緯度 : ' + str(result[0]["geometry"]["location"]["lat"]))
+    content += ('経度　: ' + str(result[0]["geometry"]["location"]["lng"]))
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -77,7 +85,6 @@ def spot_data():
     data = read_data()
 
 #案内のurlをつくる（理想、未完）
-#google_mapのURL作成
 def create_google_map_url(address,goal):
     google_map_url = 'http://maps.google.com/maps?'
     google_map_url += "saddr={}&daddr={}".format(address,goal)
@@ -249,17 +256,11 @@ def handle_message(event):
         description = description.rstrip('について教えて！')
         content = description
     else:
-        googleapikey=os.environ["GOOGLE_API_KEY"]
-        gmaps = googlemaps.Client(key=googleapikey)
-        address = event.message.text
-        result = gmaps.geocode(address)
-        content = ('緯度 : ' + str(result[0]["geometry"]["location"]["lat"]))
-        content += ('経度　: ' + str(result[0]["geometry"]["location"]["lng"]))
-        #Sdata = read_data()
-        #for i in range(651):
-          #if event.message.text in data[i][3]:
-                #content = data[i][3] + ":" + "\n" + data[i][7]
-                #break
+        Sdata = read_data()
+        for i in range(651):
+          if event.message.text in data[i][3]:
+                content = data[i][3] + ":" + "\n" + data[i][7]
+                break
     line_bot_api.reply_message(
         event.reply_token,
             TextSendMessage(text=content)
