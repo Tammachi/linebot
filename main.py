@@ -277,7 +277,7 @@ def handle_message(event):
 def handle_image_message(event):
     global address
     address=event.message.address[13:]
-    messages = make_carousel_template(address,event.message.latitude,event.message.longitude)
+    messages = make_carousel_template(address,event.message.latitude, event.message.longitude)
     line_bot_api.reply_message(
         event.reply_token,
         [
