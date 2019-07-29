@@ -16,8 +16,8 @@ import os
 import sys
 import csv
 import random
-# from pygeocoder import Geocoder
-# import googlemaps
+from pygeocoder import Geocoder
+import googlemaps
 from argparse import ArgumentParser
 
 detail=['うんち','うんち','うんち','うんち','うんち']
@@ -69,23 +69,23 @@ def callback():
 
     return 'OK'
 
-# #名前から緯度経度をだす
-# def make_idokedo():
-#     googleapikey=os.environ["GOOGLE_API_KEY"]
-#     gmaps = googlemaps.Client(key=googleapikey)
-#     address = event.message.text
-#     result = gmaps.geocode(address)
-#     content = ('緯度 : ' + str(result[0]["geometry"]["location"]["lat"]))
-#     content += ('経度　: ' + str(result[0]["geometry"]["location"]["lng"]))
-#     return content
-#
-# #出発地から目的地までの所要時間
-# def make_kyori(lat,lng,spot):
-#     googleapikey=os.environ["GOOGLE_API_KEY"]
-#     gmaps = googlemaps.Client(key=googleapikey)
-#     result = gmaps.distance_matrix(origins=spot,destination=(lat,lng),mode='walking')
-#     distance = result['rows'][0]['elements'][0]['distance']['value']
-#     return distance
+#名前から緯度経度をだす
+def make_idokedo():
+    googleapikey=os.environ["GOOGLE_API_KEY"]
+    gmaps = googlemaps.Client(key=googleapikey)
+    address = event.message.text
+    result = gmaps.geocode(address)
+    content = ('緯度 : ' + str(result[0]["geometry"]["location"]["lat"]))
+    content += ('経度　: ' + str(result[0]["geometry"]["location"]["lng"]))
+    return content
+
+#出発地から目的地までの所要時間
+def make_kyori(lat,lng,spot):
+    googleapikey = os.environ["GOOGLE_API_KEY"]
+    gmaps = googlemaps.Client(key=googleapikey)
+    result = gmaps.distance_matrix(origins=spot,destination=(lat,lng),mode='walking')
+    distance = result['rows'][0]['elements'][0]['distance']['value']
+    return distance
 
 #言葉から、areaを探す。（未完）
 
@@ -276,7 +276,7 @@ def handle_message(event):
 def handle_image_message(event):
     global address
     address=event.message.address[13:]
-    messages = make_carousel_template(address,event.message.latitude,event.messsage.longitude)
+    messages = make_carousel_template(address,event.message.latitude,event.message.longitude)
     line_bot_api.reply_message(
         event.reply_token,
         [
