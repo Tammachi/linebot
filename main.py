@@ -20,6 +20,9 @@ import random
 # import googlemaps
 from argparse import ArgumentParser
 
+detail=['うんち','うんち','うんち','うんち','うんち']
+place=['金閣寺','銀閣寺','清水寺','三十三間堂','伏見稲荷大社']
+
 from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
