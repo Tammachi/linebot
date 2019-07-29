@@ -86,8 +86,6 @@ def make_kyori(lat,lng,spot):
     return distance
 
 #言葉から、areaを探す。（未完）
-def spot_data():
-    data = read_data()
 
 #案内のurlをつくる（理想、未完）
 def create_google_map_url(address,goal):
@@ -236,8 +234,6 @@ def make_carousel_template(address,lat,lon):
         )
     )
     return carousel_template_message
-
-
 
 
 # テキストメッセージイベントの場合の処理
