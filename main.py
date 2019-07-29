@@ -253,8 +253,8 @@ def handle_message(event):
         gmaps = googlemaps.Client(key=googleapikey)
         address = event.message.text
         result = gmaps.geocode(address)
-        lat = result[0]["geometry"]["location"]["lat"]
-        content = result[0]["geometry"]["location"]["lng"]
+        content = ('緯度 : 'str(result[0]["geometry"]["location"]["lat"]))
+        content += ('経度　: 'str(result[0]["geometry"]["location"]["lng"]))
         #Sdata = read_data()
         #for i in range(651):
           #if event.message.text in data[i][3]:
