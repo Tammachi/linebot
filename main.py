@@ -84,8 +84,8 @@ def make_kyori(lat,lng,lat2,lng2):
     gmaps = googlemaps.Client(key=googleapikey)
     result = gmaps.distance_matrix(origins=(lat2,lng2),destinations=(lat,lng),mode='walking')
     distance = result['rows'][0]['elements'][0]['distance']['value']
-    distance += result['rows'][0]['elements'][0]['duration']['value']
-    return distance
+    duration = result['rows'][0]['elements'][0]['duration']['value']
+    return distance , duration
 
 #言葉から、areaを探す。（未完）
 
@@ -123,8 +123,8 @@ def make_carousel_template(address,lat,lng):
     URL = []
 
     lat2 , lng2 = make_idokedo(data[num[1]][3])
-    time = make_kyori(lat,lng,lat2,lng2)
-
+    distance , duration = make_kyori(lat,lng,lat2,lng2)
+    explanation = str(distance) + "km " +str(duration) + "分"
     for i in range(6):
         goal = str(data[num[i]][3])
         goal = goal.replace("　","")
