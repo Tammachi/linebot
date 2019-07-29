@@ -84,9 +84,10 @@ def make_kyori(lat,lng,lat2,lng2):
     gmaps = googlemaps.Client(key=googleapikey)
     result = gmaps.distance_matrix(origins=(lat2,lng2),destinations=(lat,lng),mode='walking')
     distance = result['rows'][0]['elements'][0]['distance']['value']
-    duration = result['rows'][0]['elements'][0]['duration']['value']
-    explanation = str(distance)+"km "+str(duration)+"秒"
-    return explanation
+    distance += result['rows'][0]['elements'][0]['duration']['value']
+    #duration = result['rows'][0]['elements'][0]['duration']['value']
+    #explanation = str(distance)+"km "+str(duration)+"秒"
+    return distance
 
 #言葉から、areaを探す。（未完）
 
