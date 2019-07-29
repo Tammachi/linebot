@@ -252,10 +252,8 @@ def handle_message(event):
         @client = GooglePlaces::Client.new( ENV['GOOGLE_API_KEY']
         gmaps = googlemaps.Client(key=googleapikey)
         address = event.message.text
-        result = gmaps.geocode(address,language="ja")
         result = gmaps.geocode(address)
-        print(result)
-        at = result[0]["geometry"]["location"]["lat"]
+        lat = result[0]["geometry"]["location"]["lat"]
         content = result[0]["geometry"]["location"]["lng"]
         #Sdata = read_data()
         #for i in range(651):
