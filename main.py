@@ -249,8 +249,8 @@ def handle_message(event):
         description = description.rstrip('について教えて！')
         content = description
     else:
-
-        gmaps = googlemaps.Client(key=ENV['GOOGLE_API_KEY'])
+        client = GooglePlaces::Client.new( ENV['GOOGLE_API_KEY'] )
+        gmaps = googlemaps.Client(key=client)
         address = event.message.text
         result = gmaps.geocode(address)
         lat = result[0]["geometry"]["location"]["lat"]
