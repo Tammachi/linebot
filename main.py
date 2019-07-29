@@ -249,7 +249,7 @@ def handle_message(event):
         description = description.rstrip('について教えて！')
         content = description
     else:
-        googleapikey = 'AIzaSyB3wvto0C6bh_L-K0T5YvVInduXzrRGh24'
+        @client = GooglePlaces::Client.new( ENV['GOOGLE_API_KEY']
         gmaps = googlemaps.Client(key=googleapikey)
         address = event.message.text
         #result = gmaps.geocode(address,language="ja")
