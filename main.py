@@ -74,9 +74,9 @@ def make_idokedo(address):
     googleapikey=os.environ["GOOGLE_API_KEY"]
     gmaps = googlemaps.Client(key=googleapikey)
     result = gmaps.geocode(address)
-    content = ('緯度 : ' + str(result[0]["geometry"]["location"]["lat"]))
-    content += ('経度　: ' + str(result[0]["geometry"]["location"]["lng"]))
-    return content
+    lat = result[0]["geometry"]["location"]["lat"]
+    lng = result[0]["geometry"]["location"]["lng"]
+    return lat,lng
 
 #出発地から目的地までの所要時間
 def make_kyori(lat,lng,lat2,lng2):
