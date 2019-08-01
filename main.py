@@ -70,9 +70,9 @@ def callback():
     return 'OK'
 
 def gethms(duration):
-    m,s = divmod(duration.seconds,60)
-    h,m =divmod(m,60)
-    return h,m,s
+    m, s = divmod(duration.seconds, 60)
+    h, m = divmod(m, 60)
+    return h, m, s
 
 #名前から緯度経度をだす
 def make_idokedo(spot):
@@ -91,7 +91,7 @@ def make_kyori(lat,lng,lat2,lng2):
     distance = result['rows'][0]['elements'][0]['distance']['value']
     #distance += result['rows'][0]['elements'][0]['duration']['value']
     duration = result['rows'][0]['elements'][0]['duration']['value']
-    h,m,s=gethms(duration)
+    h,m,s = gethms(duration)
 
     # if distance > 1000:
     #     distance = distance/1000
