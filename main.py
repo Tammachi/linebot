@@ -86,13 +86,13 @@ def make_kyori(lat,lng,lat2,lng2):
     distance = result['rows'][0]['elements'][0]['distance']['value']
     #distance += result['rows'][0]['elements'][0]['duration']['value']
     duration = result['rows'][0]['elements'][0]['duration']['value']
-    duration = datetime.timedelta(seconds=duration)
+    duration = str(datetime.timedelta(seconds=duration))
     if distance > 1000:
         distance = distance/1000
         distance = str(distance) + "km "
     else:
-        distance = str(distance) + "m"
-    explanation =  str(distance) + str(duration)
+        distance = str(distance) + "m "
+    explanation = str(distance) + str(duration)
     return explanation
 
 #言葉から、areaを探す。（未完）
