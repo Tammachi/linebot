@@ -69,6 +69,11 @@ def callback():
 
     return 'OK'
 
+def gethms(duration):
+    m,s = divmod(duration.seconds,60)
+    h,m =divmod(m,60)
+    return h,m,s
+
 #名前から緯度経度をだす
 def make_idokedo(spot):
     googleapikey=os.environ["GOOGLE_API_KEY"]
@@ -86,13 +91,14 @@ def make_kyori(lat,lng,lat2,lng2):
     distance = result['rows'][0]['elements'][0]['distance']['value']
     #distance += result['rows'][0]['elements'][0]['duration']['value']
     duration = result['rows'][0]['elements'][0]['duration']['value']
-    time = datetime.timedelta(seconds=duration)
+    h,m,s=gethms(duration)
+
     # if distance > 1000:
     #     distance = distance/1000
     #     distance = str(distance) + "km "
     # else:
     #     distance = str(distance) + "m "
-    explanation = str(distance) + str(time)
+    explanation = str(distance) + str(h) + "時" +str(m)+ "分" + str(s)"秒"
     return explanation
 
 #言葉から、areaを探す。（未完）
