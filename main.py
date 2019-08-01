@@ -78,7 +78,7 @@ def make_idokedo(spot):
     lng = result[0]["geometry"]["location"]["lng"]
     return lat,lng
 
-#出発地から目的地までの所要時間
+#出発地から目的地までの所要時間および距離
 def make_kyori(lat,lng,lat2,lng2):
     googleapikey = os.environ["GOOGLE_API_KEY"]
     gmaps = googlemaps.Client(key=googleapikey)
@@ -86,7 +86,12 @@ def make_kyori(lat,lng,lat2,lng2):
     distance = result['rows'][0]['elements'][0]['distance']['value']
     #distance += result['rows'][0]['elements'][0]['duration']['value']
     duration = result['rows'][0]['elements'][0]['duration']['value']
-    explanation = str(distance)+"m "+str(duration)+"秒"
+    duration = str(datetime.timedelta(seconds=duration))
+    if distance > 1000:
+        distance = str(distance/1000) + "km "
+    else:
+        distance = str(distance) + "m"
+    explanation =  distance + duration
     return explanation
 
 #言葉から、areaを探す。（未完）
@@ -123,7 +128,6 @@ def make_carousel_template(address,lat,lng):
     data = read_data()
     num = rundum_num()
     URL = []
-
     lat2 , lng2 = make_idokedo(data[num[1]][3])
     explanation = make_kyori(lat,lng,lat2,lng2)
 
