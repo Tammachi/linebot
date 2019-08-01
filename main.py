@@ -92,7 +92,7 @@ def make_kyori(lat,lng,lat2,lng2):
         distance = str(distance) + "km "
     else:
         distance = str(distance) + "m"
-    explanation =  distance + str(duration)
+    explanation =  str(distance) + str(duration)
     return explanation
 
 #言葉から、areaを探す。（未完）
