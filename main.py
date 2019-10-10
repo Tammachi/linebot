@@ -17,6 +17,7 @@ import os
 import sys
 import csv
 import random
+import numpy
 from pygeocoder import Geocoder
 import googlemaps
 from argparse import ArgumentParser
@@ -102,6 +103,31 @@ def make_kyori(lat,lng,lat2,lng2):
     explanation = str(distance) + str(duration)
     return explanation
 
+def search_area(lat,lng):
+    linedata = []
+    spot=[]
+    data=read_data()
+    a=numpy.array([lat,lng]) #現在地
+    for i in range(650):
+        if data[i][25] == 999:
+            linedata.append(no)
+        else:
+            xx=data[i][25].replace('\"', '')
+            yy=data[i][26].replace('\"', '')
+            print(yy)
+            xxx=float(xx)
+            yyy=float(yy)
+            b=numpy.array([xxx,yyy])
+            u=b-a
+            x=numpy.linalg.norm(u)
+            linedata.append(x)
+    for i in range (5):
+        maxx=linedata.index(min(linedata))
+        spot.append(maxx)
+        linedata[maxx] = 100
+        return spot
+
+
 #言葉から、areaを探す。（未完）
 
 #案内のurlをつくる（理想、未完）
@@ -138,6 +164,7 @@ def make_carousel_template(address,lat,lng):
     URL = []
     lat2 , lng2 = make_idokedo(data[num[1]][3])
     explanation = make_kyori(lat,lng,lat2,lng2)
+    spot=search_area()
 
     for i in range(6):
         goal = str(data[num[i]][3])
@@ -149,18 +176,18 @@ def make_carousel_template(address,lat,lng):
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url=data[num[1]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[1]][3],
+                    thumbnail_image_url=data[spot[1]][24],
+                    title=data[spot[1]][3],
                     text=explanation,
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[1]][3]+'に行きたい',#合わせて変えたヨ
+                            text=data[spot[1]][3]+'に行きたい',#合わせて変えたヨ
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[1]][3]
+                            text=data[spot[1]][3]
                         ),
                         URIAction(
                             label='ここに行く！直接URL',
@@ -169,18 +196,18 @@ def make_carousel_template(address,lat,lng):
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[2]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[2]][3],
-                    text=data[num[2]][4],
+                    thumbnail_image_url=data[spot[2]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
+                    title=data[spot[2]][3],
+                    text=data[spot[2]][4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[2]][3]+'に行きたい',#合わせて変えたヨ
+                            text=data[spot[2]][3]+'に行きたい',#合わせて変えたヨ
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[2]][3]
+                            text=data[spot[2]][3]
                         ),
                         URIAction(
                             label='ここに行く！直接URL',
@@ -189,18 +216,18 @@ def make_carousel_template(address,lat,lng):
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[3]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[3]][3],
-                    text=data[num[3]][4],
+                    thumbnail_image_url=data[spot[3]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
+                    title=data[spot[3]][3],
+                    text=data[spot[3]][4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[3]][3]+'に行きたい',#合わせて変えたヨ
+                            text=data[spot[3]][3]+'に行きたい',#合わせて変えたヨ
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[3]][3]
+                            text=data[spot[3]][3]
                         ),
                         URIAction(
                             label='ここに行く！直接URL',
@@ -209,18 +236,18 @@ def make_carousel_template(address,lat,lng):
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[4]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[4]][3],
-                    text=data[num[4]][4],
+                    thumbnail_image_url=data[spot[4]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
+                    title=data[spot[4]][3],
+                    text=data[spot[4]][4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[4]][3]+'に行きたい',#合わせて変えたヨ
+                            text=data[spot[4]][3]+'に行きたい',#合わせて変えたヨ
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[4]][3]
+                            text=data[spot[4]][3]
                         ),
                         URIAction(
                             label='ここに行く！直接URL',
@@ -229,18 +256,18 @@ def make_carousel_template(address,lat,lng):
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=data[num[5]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
-                    title=data[num[5]][3],
-                    text=data[num[5]][4],
+                    thumbnail_image_url=data[spot[5]][24], #data[1][23],　#画像urlは入ってるけどなんか上手くいかない.
+                    title=data[spot[5]][3],
+                    text=data[spot[5]][4],
                     actions=[
                         PostbackAction(
                             label='ここに行く！',
-                            text=data[num[5]][3]+'に行きたい',#合わせて変えたヨ
+                            text=data[spot[5]][3]+'に行きたい',#合わせて変えたヨ
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
                             label='詳しく見る。',
-                            text=data[num[5]][3]
+                            text=data[spot[5]][3]
                         ),
                         URIAction(
                             label='ここに行く！直接URL',
