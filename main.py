@@ -165,9 +165,9 @@ def make_carousel_template(address,lat,lng):
     lat2 , lng2 = make_idokedo(data[num[1]][3])
     explanation = make_kyori(lat,lng,lat2,lng2)
     spot=search_area()
-
+    
     for i in range(6):
-        goal = str(data[num[i]][3])
+        goal = str(data[spot[i]][3])
         goal = goal.replace("　","")
         URL.append(create_google_map_url(address,goal))
 
