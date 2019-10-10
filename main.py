@@ -105,7 +105,7 @@ def make_kyori(lat,lng,lat2,lng2):
 
 def search_area(lat,lng):
     linedata = []
-    spot=[]
+    nearspot=[]
     data=read_data()
     a=numpy.array([lat,lng]) #現在地
     for i in range(650):
@@ -123,9 +123,9 @@ def search_area(lat,lng):
             linedata.append(x)
     for i in range (5):
         maxx=linedata.index(min(linedata))
-        spot.append(maxx)
+        nearspot.append(maxx)
         linedata[maxx] = 100
-        return spot
+        return nearspot
 
 
 #言葉から、areaを探す。（未完）
@@ -164,8 +164,8 @@ def make_carousel_template(address,lat,lng):
     URL = []
     lat2 , lng2 = make_idokedo(data[num[1]][3])
     explanation = make_kyori(lat,lng,lat2,lng2)
-    spot=search_area()
-    
+    nearspot = search_area()
+
     for i in range(6):
         goal = str(data[spot[i]][3])
         goal = goal.replace("　","")
